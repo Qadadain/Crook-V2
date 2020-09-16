@@ -10,9 +10,12 @@
     </head>
     <body>
     {% include 'Components/_navbar.html.twig'%}
+    <main>
         {% block body %}{% endblock %}
+    </main>
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+    {% include 'Components/_footer.html.twig' %}
     </body>
 </html>
