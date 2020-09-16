@@ -75,6 +75,10 @@ class User implements UserInterface
         $this->sheets = new ArrayCollection();
         $this->tutorials = new ArrayCollection();
     }
+    public function  __toString()
+    {
+        return $this->getPseudo();
+    }
 
     public function getId(): ?int
     {
@@ -185,11 +189,12 @@ class User implements UserInterface
 
     /**
      * @ORM\PrePersist
+     * @param DateTimeInterface|null $date
      * @return $this
      */
-    public function setCreateAt(): self
+    public function setCreateAt(?\DateTimeInterface $date): self
     {
-        $this->createAt = new \DateTime();
+        $this->createAt = $date;
 
         return $this;
     }

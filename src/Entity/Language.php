@@ -65,6 +65,10 @@ class Language
         $this->sheets = new ArrayCollection();
         $this->tutorials = new ArrayCollection();
     }
+    public function  __toString()
+    {
+        return $this->getName();
+    }
 
     public function getId(): ?int
     {
