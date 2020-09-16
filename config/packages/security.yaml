@@ -4,7 +4,7 @@ security:
         users_in_memory: { memory: null }
     firewalls:
         dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            pattern: ^/(_(profiler|wdt)|scss|images|js)/
             security: false
         main:
             anonymous: true
