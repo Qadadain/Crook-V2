@@ -1,0 +1,18 @@
+<nav class="bck-secondary">
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Logo</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <li><a href="{{ path('home') }}">Inscription / Connexion </a></li>
+            {% else %}
+            <li><a href="{{ path('home') }}">Connexion</a></li>
+            {% endif %}
+            <li><a href="{{ path('home') }}">Sheet</a></li>
+            <li><a href="{{ path('home') }}">Tutoriel</a></li>
+            <li><a href="{{ path('home') }}">Langage</a></li>
+            {% if is_granted('ROLE_ADMIN') %}
+            <li><a href="{{ path('home') }}">Administration</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>

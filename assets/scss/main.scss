@@ -1,0 +1,27 @@
+$primary: #1b1b33;
+$secondary: #343a40;
+$tertiary: snow;
+
+.bck {
+  &-primary {
+    background-color: $primary;
+  }
+  &-secondary {
+    background-color: $secondary;
+  }
+  &-tertiary {
+    background-color: $tertiary;
+  }
+}
+.text {
+  &-primary {
+    color: $primary;
+  }
+  &-secondary {
+    color: $secondary;
+  }
+  &-tertiary {
+    color: $tertiary;
+  }
+}
+
