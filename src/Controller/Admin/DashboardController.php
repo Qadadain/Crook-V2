@@ -2,7 +2,9 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Language;
 use App\Entity\Sheet;
+use App\Entity\Tutorial;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -31,8 +33,10 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
 
         yield MenuItem::section('CRUD');
-        yield MenuItem::linkToCrud('User', 'fas fa-building', User::class);
-        yield MenuItem::linkToCrud('Sheet', 'fas fa-building', Sheet::class);
+        yield MenuItem::linkToCrud('User', 'far fa-id-card', User::class);
+        yield MenuItem::linkToCrud('Sheet', 'fas fa-code', Sheet::class);
+        yield MenuItem::linkToCrud('Langage', 'far fa-file-code', Language::class);
+        yield MenuItem::linkToCrud('Tutoriel', 'far fa-file-alt', Tutorial::class);
 
     }
 }

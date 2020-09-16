@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Sheet;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
@@ -31,5 +32,10 @@ class SheetCrudController extends AbstractCrudController
             DateField::new('updateAt', 'Maj')->hideOnForm(),
         ];
     }
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
 
+            ->setSearchFields(['id', 'title', 'description', 'content', 'author.pseudo', 'language.name', 'createAt', 'updateAt']);
+    }
 }
