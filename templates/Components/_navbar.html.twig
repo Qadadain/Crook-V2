@@ -2,11 +2,14 @@
     <div class="nav-wrapper">
         <a href="#" class="brand-logo">Logo</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-            <li><a href="{{ path('home') }}">Inscription / Connexion </a></li>
-            {% else %}
-            <li><a href="{{ path('home') }}">Connexion</a></li>
-            {% endif %}
+            <a class='dropdown-trigger btn-floating pulse' href='#' data-position='bottom' data-target='dropdown1'><i class="material-icons">person</i></a>
+            <ul id='dropdown1' class='dropdown-content'>
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+                {% else %}
+                    <li><a href="{{ path('app_login') }}">Connexion</a></li>
+                {% endif %}
+            </ul>
             <li><a href="{{ path('home') }}">Sheet</a></li>
             <li><a href="{{ path('home') }}">Tutoriel</a></li>
             <li><a href="{{ path('home') }}">Langage</a></li>
