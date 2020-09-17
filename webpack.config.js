@@ -18,7 +18,6 @@ Encore
     .setPublicPath('/build')
 
     .addEntry('app', './assets/js/app.js')
-    .addEntry('materialize', './assets/js/materialize.js')
 
     .splitEntryChunks()
 
