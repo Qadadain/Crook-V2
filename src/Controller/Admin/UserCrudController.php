@@ -8,7 +8,10 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Vich\UploaderBundle\Form\Type\VichImageType;
+use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -24,9 +27,11 @@ class UserCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             TextField::new('pseudo', 'Pseudo'),
             EmailField::new('email', 'Email'),
-            TextField::new('avatar', 'Avatar'),
-            DateField::new('createAt', 'Crée le'),
-            DateField::new('updateAt', 'Maj'),
+            ImageField::new('imageFile')
+                ->setFormType(VichImageType::class)->hideOnIndex(),
+            ImageField::new('avatar', 'Avatar')->setBasePath($this->getParameter('file_avatar'))->hideOnForm(),
+            DateField::new('createAt', 'Crée le')->hideOnForm(),
+            DateField::new('updateAt', 'Maj')->hideOnForm(),
             EmailField::new('email', 'Email'),
             TextField::new('role', 'Rôle')->hideOnForm(),
         ];

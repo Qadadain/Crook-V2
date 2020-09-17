@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class LanguageCrudController extends AbstractCrudController
 {
@@ -26,7 +27,9 @@ class LanguageCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             TextField::new('name', 'Technologie'),
             ColorField::new('color', 'Couleur'),
-            TextField::new('image', 'Logo'),
+            ImageField::new('imageFile')
+                ->setFormType(VichImageType::class)->hideOnIndex(),
+            ImageField::new('image', 'Image')->setBasePath($this->getParameter('file_language'))->hideOnForm(),
             BooleanField::new('isValid'),
             DateField::new('createAt', 'Crée le')->hideOnForm(),
             DateField::new('updateAt', 'Maj')->hideOnForm(),
