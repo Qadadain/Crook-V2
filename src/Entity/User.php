@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use _HumbugBox71425477b33d\Nette\Utils\DateTime;
 use App\Repository\UserRepository;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -189,12 +190,11 @@ class User implements UserInterface
 
     /**
      * @ORM\PrePersist
-     * @param DateTimeInterface|null $date
      * @return $this
      */
-    public function setCreateAt(?\DateTimeInterface $date): self
+    public function setCreateAt(): self
     {
-        $this->createAt = $date;
+        $this->createAt = new DateTime();
 
         return $this;
     }
