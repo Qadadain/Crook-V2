@@ -11,6 +11,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.7",
         "friendsofsymfony/ckeditor-bundle": "^2.2",
+        "easycorp/easyadmin-bundle": "^3.1",
         "phpdocumentor/reflection-docblock": "^5.2",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "5.1.*",
@@ -42,6 +43,7 @@
         "twig/twig": "^2.12|^3.0"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.3",
         "phpstan/phpstan": "^0.12.42",
         "symfony/browser-kit": "^5.1",
         "symfony/css-selector": "^5.1",

@@ -2,16 +2,19 @@
 
 namespace App\Entity;
 
+use _HumbugBox71425477b33d\Nette\Utils\DateTime;
 use App\Repository\UserRepository;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\HasLifecycleCallbacks()
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class User implements UserInterface
 {
@@ -72,6 +75,10 @@ class User implements UserInterface
     {
         $this->sheets = new ArrayCollection();
         $this->tutorials = new ArrayCollection();
+    }
+    public function  __toString()
+    {
+        return $this->getPseudo();
     }
 
     public function getId(): ?int
@@ -187,7 +194,7 @@ class User implements UserInterface
      */
     public function setCreateAt(): self
     {
-        $this->createAt = new \DateTime();
+        $this->createAt = new DateTime();
 
         return $this;
     }
