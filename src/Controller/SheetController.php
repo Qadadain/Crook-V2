@@ -18,6 +18,8 @@ class SheetController extends AbstractController
 {
     /**
      * @Route("/", name="index")
+     * @param SheetRepository $sheetRepository
+     * @return Response
      */
     public function index(SheetRepository $sheetRepository)
     {
