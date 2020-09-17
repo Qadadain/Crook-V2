@@ -7,6 +7,7 @@ use App\Form\SheetType;
 use App\Repository\SheetRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -61,15 +62,19 @@ class SheetController extends AbstractController
      */
     public function edit(Sheet $sheet, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(SheetType::class, $sheet);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+        if ($sheet->getAuthor() === $this->getUser()) {
+            $form = $this->createForm(SheetType::class, $sheet);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $entityManager->flush();
 
-            return $this->redirectToRoute('sheet_index');
+                return $this->redirectToRoute('sheet_index');
+            }
+            return $this->render('sheet/edit.html.twig', [
+                'form' => $form->createView(),
+            ]);
         }
-        return $this->render('sheet/edit.html.twig', [
-            'form' => $form->createView(),
-        ]);
+        throw new Exception('Vous n\'êtes pas l\'auteur de ce sheet ou veuillez vous connecter', 401);
     }
+
 }
