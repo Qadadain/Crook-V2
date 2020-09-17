@@ -26,7 +26,7 @@ class LanguageCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             TextField::new('name', 'Technologie'),
             ColorField::new('color', 'Couleur'),
-            ImageField::new('image', 'Logo'),
+            TextField::new('image', 'Logo'),
             BooleanField::new('isValid'),
             DateField::new('createAt', 'Crée le')->hideOnForm(),
             DateField::new('updateAt', 'Maj')->hideOnForm(),
