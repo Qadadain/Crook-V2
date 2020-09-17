@@ -9,9 +9,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
+ * /**
+ * @ORM\Entity
+ * @Vich\Uploadable
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\HasLifecycleCallbacks()
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
@@ -23,43 +29,43 @@ class User implements UserInterface
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private ?int $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $email;
+    private ?string $email;
 
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    private array $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
-    private $password;
+    private string $password;
 
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private $pseudo;
+    private ?string $pseudo;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $avatar;
+    private ?string $avatar;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $createAt;
+    private ?DateTimeInterface $createAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $updateAt;
+    private ?DateTimeInterface $updateAt;
 
     /**
      * @ORM\OneToMany(targetEntity=Sheet::class, mappedBy="author")
@@ -70,6 +76,16 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity=Tutorial::class, mappedBy="author")
      */
     private $tutorials;
+
+    /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     *
+     * @Vich\UploadableField(mapping="avatar", fileNameProperty="avatar")
+     *
+     * @var File|null
+     */
+    private ?File $imageFile;
+
 
     public function __construct()
     {
@@ -276,4 +292,21 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function setImageFile(?File $imageFile = null)
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updateAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
 }
+

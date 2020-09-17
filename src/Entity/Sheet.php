@@ -16,44 +16,44 @@ class Sheet
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private ?int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $title;
+    private ?string $title;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $description;
+    private ?string $description;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $content;
+    private ?string $content;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $createAt;
+    private ?\DateTimeInterface $createAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $updateAt;
+    private ?\DateTimeInterface $updateAt;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="sheets")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $author;
+    private ?User $author;
 
     /**
      * @ORM\ManyToOne(targetEntity=Language::class, inversedBy="sheets")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $language;
+    private ?Language $language;
 
     public function getId(): ?int
     {

@@ -6,8 +6,12 @@ use App\Repository\LanguageRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
+ * @ORM\Entity
+ * @Vich\Uploadable
  * @ORM\Entity(repositoryClass=LanguageRepository::class)
  * @ORM\HasLifecycleCallbacks()
  */
@@ -18,37 +22,37 @@ class Language
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private ?int $id;
 
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private $name;
+    private ?string $name;
 
     /**
      * @ORM\Column(type="string", length=7)
      */
-    private $color;
+    private ?string $color;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $image;
+    private ?string $image;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isValid;
+    private ?bool $isValid;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $createAt;
+    private ?\DateTimeInterface $createAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $updateAt;
+    private ?\DateTimeInterface $updateAt;
 
     /**
      * @ORM\OneToMany(targetEntity=Sheet::class, mappedBy="language")
@@ -59,6 +63,15 @@ class Language
      * @ORM\OneToMany(targetEntity=Tutorial::class, mappedBy="language")
      */
     private $tutorials;
+
+    /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     *
+     * @Vich\UploadableField(mapping="language", fileNameProperty="image")
+     *
+     * @var File|null
+     */
+    private ?File $imageFile;
 
     public function __construct()
     {
@@ -215,5 +228,21 @@ class Language
         }
 
         return $this;
+    }
+
+    public function setImageFile(?File $imageFile = null)
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updateAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
     }
 }
