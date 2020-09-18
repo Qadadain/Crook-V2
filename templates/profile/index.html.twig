@@ -1,20 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfileController!{% endblock %}
+{% block title %}Mon Profil{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/thomas/PhpstormProjects/Crook-V2/src/Controller/ProfileController.php'|file_link(0) }}">src/Controller/ProfileController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/thomas/PhpstormProjects/Crook-V2/templates/profile/index.html.twig'|file_link(0) }}">templates/profile/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <div class="container">
+        <div class="row">
+            <div class="col s6">
+                <div>
+                    <h5>Mon Email :</h5>
+                    <p>{{ user.email }}</p>
+                </div>
+                <div>
+                    <h5>Mon Pseudo :</h5>
+                    <p>{{ user.pseudo }}</p>
+                </div>
+                <div>
+                    <h5>Mon Avatar :</h5>
+                    <img src="{{ asset('/build/images/avatar/') }}{{ user.avatar }}" alt="avatar" class="circle">
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

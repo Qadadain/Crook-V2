@@ -1,4 +1,5 @@
 var Encore = require('@symfony/webpack-encore');
+const CopyPlugin = require('copy-webpack-plugin');
 
 if (!Encore.isRuntimeEnvironmentConfigured()) {
     Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
@@ -35,6 +36,12 @@ Encore
     })
 
     .enableSassLoader()
+    .addPlugin(new CopyPlugin({
+        patterns: [
+            { from: 'public/images', to: 'images' },
+        ]
+    }))
+
 ;
 
 module.exports = Encore.getWebpackConfig();
