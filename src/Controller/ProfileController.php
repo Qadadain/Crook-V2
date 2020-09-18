@@ -2,12 +2,14 @@
 
 namespace App\Controller;
 
+use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/profile", name="profile_")
+ * @Route("/profil", name="profile_")
  */
 class ProfileController extends AbstractController
 {
@@ -17,9 +19,32 @@ class ProfileController extends AbstractController
     public function index()
     {
         return $this->render('profile/index.html.twig', [
-            'controller_name' => 'ProfileController',
+            'user' => $this->getUser(),
         ]);
     }
+
+    /**
+     * @Route("/edit", name="edit")
+     * @param Request $request
+     * @return Response
+     */
+    public function edit(Request $request)
+    {
+
+        $form = $this->createForm(UserType::class, $this->getUser());
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager = $this->getDoctrine()->getManager();
+            $manager->flush();
+
+            return $this->redirectToRoute('profile_index');
+        }
+        return $this->render('profile/edit.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
 
     /**
      * @Route("/mes-sheets", name="my_sheet")
