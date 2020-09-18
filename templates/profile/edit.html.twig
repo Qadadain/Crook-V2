@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col s4 push-s4">
+            {{ form_start(form) }}
+            {{ form_row(form.pseudo) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.imageFile) }}
+            <button class="btn">{{ button_label|default('Save') }}</button>
+            {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
