@@ -3,23 +3,39 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <div class="row">
-        <div class="col s4 push-s4">
-
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--4-col"></div>
+        <div class="mdl-cell mdl-cell--4-col">
             {% for flashError in app.flashes('verify_email_error') %}
                 <div class="alert alert-danger" role="alert">{{ flashError }}</div>
             {% endfor %}
 
             <h1>Inscription</h1>
-
             {{ form_start(registrationForm) }}
-            {{ form_row(registrationForm.email) }}
-            {{ form_row(registrationForm.pseudo) }}
-            {{ form_row(registrationForm.plainPassword.first) }}
-            {{ form_row(registrationForm.plainPassword.second) }}
-
-            <button type="submit" class="btn">S'inscrire !</button>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form_widget(registrationForm.email) }}
+                {{ form_label(registrationForm.email) }}
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form_widget(registrationForm.pseudo) }}
+                {{ form_label(registrationForm.pseudo) }}
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form_widget(registrationForm.plainPassword.first) }}
+                {{ form_label(registrationForm.plainPassword.first) }}
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form_widget(registrationForm.plainPassword.second) }}
+                {{ form_label(registrationForm.plainPassword.second) }}
+            </div>
+            <div>
+                <button type="submit"
+                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
+                    S'inscrire !
+                </button>
+            </div>
             {{ form_end(registrationForm) }}
         </div>
+        <div class="mdl-cell mdl-cell--4-col"></div>
     </div>
 {% endblock %}
