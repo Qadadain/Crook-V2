@@ -1,15 +1,4 @@
 
-      {#      <a class='dropdown-trigger btn-floating pulse' href='#' data-position='bottom' data-target='dropdown1'><i class="material-icons">person</i></a>
-            <ul id='dropdown1' class='dropdown-content'>
-                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                    <li><a href="{{ path('profile_my_sheet') }}">Mes Sheet</a></li>
-                    #}{#<li><a href="{{ path('') }}">Mes Tutoriels</a></li>#}{#
-                    <li><a href="{{ path('profile_index') }}">Profile</a></li>
-                    <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
-                {% else %}
-                    <li><a href="{{ path('app_login') }}">Connexion</a></li>
-                {% endif %}#}
-
 <div class="mdl-layout mdl-js-layout">
     <header class="mdl-layout__header mdl-layout__header--scroll">
         <div class="mdl-layout__header-row">
@@ -19,23 +8,39 @@
             <div class="mdl-layout-spacer"></div>
             <!-- Navigation -->
             <nav class="mdl-navigation">
-                <a href="{{ path('home') }}">Sheet</a>
-                <a href="{{ path('home') }}">Tutoriel</a>
-                <a href="{{ path('home') }}">Langage</a>
+                <a class="mdl-navigation__link" href="{{ path('home') }}">Sheet</a>
+                <a class="mdl-navigation__link" href="{{ path('home') }}">Tutoriel</a>
+                <a class="mdl-navigation__link" href="{{ path('home') }}">Langage</a>
                 {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('home') }}">Administration</a>
+                    <a class="mdl-navigation__link" href="{{ path('home') }}">Administration</a>
                 {% endif %}
+                <button id="demo-menu-lower-right"
+                        class="mdl-button mdl-js-button mdl-button--icon">
+                    <i class="material-icons">more_vert</i>
+                </button>
+
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                    for="demo-menu-lower-right">
+                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                        <li class="mdl-menu__item"><a href="{{ path('profile_my_sheet') }}">Mes Sheet</a></li>
+                        <li class="mdl-menu__item"><a href="{{ path('') }}">Mes Tutoriels</a></li>
+                        <li class="mdl-menu__item"><a href="{{ path('profile_index') }}">Profile</a></li>
+                        <li class="mdl-menu__item"><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+                    {% else %}
+                        <li class="mdl-menu__item"><a href="{{ path('app_login') }}">Connexion</a></li>
+                    {% endif %}
+                </ul>
             </nav>
         </div>
     </header>
     <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">test</span>
         <nav class="mdl-navigation">
-            <a href="{{ path('home') }}">Sheet</a>
-            <a href="{{ path('home') }}">Tutoriel</a>
-            <a href="{{ path('home') }}">Langage</a>
+            <a class="mdl-navigation__link" href="{{ path('home') }}">Sheet</a>
+            <a class="mdl-navigation__link" href="{{ path('home') }}">Tutoriel</a>
+            <a class="mdl-navigation__link" href="{{ path('home') }}">Langage</a>
             {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{ path('home') }}">Administration</a>
+                <a class="mdl-navigation__link" href="{{ path('home') }}">Administration</a>
             {% endif %}
         </nav>
     </div>
