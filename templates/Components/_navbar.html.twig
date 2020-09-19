@@ -23,7 +23,7 @@
                     for="demo-menu-lower-right">
                     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                         <li class="mdl-menu__item"><a href="{{ path('profile_my_sheet') }}">Mes Sheet</a></li>
-                        <li class="mdl-menu__item"><a href="{{ path('') }}">Mes Tutoriels</a></li>
+                        <li class="mdl-menu__item"><a href="{{ path('profile_index') }}">Mes Tutoriels</a></li>
                         <li class="mdl-menu__item"><a href="{{ path('profile_index') }}">Profile</a></li>
                         <li class="mdl-menu__item"><a href="{{ path('app_logout') }}">Déconnexion</a></li>
                     {% else %}
