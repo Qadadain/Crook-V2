@@ -22,7 +22,7 @@ class SheetController extends AbstractController
      * @param SheetRepository $sheetRepository
      * @return Response
      */
-    public function index(SheetRepository $sheetRepository)
+    public function index(SheetRepository $sheetRepository): Response
     {
         $sheets = $sheetRepository->findAll();
 
@@ -86,6 +86,7 @@ class SheetController extends AbstractController
     {
         return $this->render('sheet/show.html.twig', [
             'sheet' => $sheet,
+            'user' => $this->getUser(),
         ]);
     }
 }
