@@ -1,0 +1,27 @@
+<div class="container mdl-grid">
+    {% for sheet in sheets %}
+        <div class="card mdl-cell mdl-cell--4-col">
+            <div class="content">
+                <img class="card-image" src="{{ asset('/build/images/language/') }}{{ sheet.language.image }}" alt="">
+                <h6>{{ sheet.title }}</h6>
+                <div class="hover_content">
+                    <div>
+                        <p>{{ sheet.description }}</p>
+                    </div>
+                    <div class="author">
+                        <div>
+                            <p>par {{ sheet.author.pseudo }}</p>
+                        </div>
+                        <div class="button">
+                            <a href="{{ path('sheet_show', {'id': sheet.id }) }}">
+                                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                                    <i class="material-icons">open_in_new</i>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

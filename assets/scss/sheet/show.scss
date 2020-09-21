@@ -1,0 +1,21 @@
+body {
+    .sheet-language {
+        display: flex;
+
+        .sheet-image {
+            height: 50px;
+            width: 50px;
+            border-radius: 50px;
+            margin-right: 0.4em;
+        }
+
+        .sheet-author {
+            display: flex;
+            align-items: flex-end;
+
+            p {
+                margin-right: 10px;
+            }
+        }
+    }
+}

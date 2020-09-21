@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--3-col"></div>
+        <div class="mdl-cell mdl-cell--6-col">
+            <div>
+                <h3>{{ sheet.title }}</h3>
+                <div class="sheet-language">
+                    <img class="sheet-image" src="{{ asset('/build/images/language/') }}{{ sheet.language.image }}"
+                         alt="">
+                    <h3>{{ sheet.language.name }}</h3>
+                </div>
+            </div>
+            <div>
+                <h5>{{ sheet.description }}</h5>
+            </div>
+            <div>
+                <p>{{ sheet.content }}</p>
+            </div>
+            <div class="sheet-author">
+                <h6>Crée par {{ sheet.author.pseudo }}, le ...</h6>
+                <img class="sheet-image" src="{{ asset('/build/images/avatar/') }}{{ sheet.author.avatar }}"
+                     alt="">
+            </div>
+        </div>
+    </div>
+{% endblock %}

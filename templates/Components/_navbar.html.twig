@@ -7,9 +7,11 @@
             <div class="mdl-layout-spacer"></div>
             <!-- Navigation -->
             <nav class="mdl-navigation">
-                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="{{ path('home') }}">Sheets</a>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase"
+                   href="{{ path('sheet_index') }}">Sheets</a>
                 <a class="mdl-navigation__link mdl-typography--text-uppercase" href="{{ path('home') }}">Tutoriels</a>
-                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="{{ path('home') }}">Technologies</a>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase"
+                   href="{{ path('home') }}">Technologies</a>
                 {% if is_granted('ROLE_ADMIN') %}
                     <a class="mdl-navigation__link mdl-typography--text-uppercase" href="{{ path('home') }}">Administration</a>
                 {% endif %}
@@ -36,13 +38,14 @@
         </div>
         <nav class="mdl-navigation">
             <a class="mdl-navigation__link" href="{{ path('profile_my_sheet') }}">Mes Sheets</a>
-            <a class="mdl-navigation__link" href="{{ path('profile_index') }}">Mes Tutoriels</a>
+            <a class="mdl-navigation__link" href="{{ path('home') }}">Mes Tutoriels</a>
             <a class="mdl-navigation__link" href="{{ path('home') }}">Mes Favoris</a>
             <a class="mdl-navigation__link" href="{{ path('profile_index') }}">Mon Profil</a>
             {% if is_granted('ROLE_ADMIN') %}
                 <a class="mdl-navigation__link" href="{{ path('home') }}">Administration</a>
             {% endif %}
-            <a class="mdl-navigation__link mdl-navigation__link--current" href="{{ path('app_logout') }}">Déconnexion</a>
+            <a class="mdl-navigation__link mdl-navigation__link--current"
+               href="{{ path('app_logout') }}">Déconnexion</a>
         </nav>
     </div>
     {% else %}
@@ -51,7 +54,7 @@
         <h6 class="h6-navbar">Bonjour, pour commencer à utiliser Crook connecte toi !</h6>
     </div>
     <nav class="mdl-navigation">
-    <a class="mdl-navigation__link" href="{{ path('app_login') }}">Connexion</a>
-    {% endif %}
+        <a class="mdl-navigation__link" href="{{ path('app_login') }}">Connexion</a>
+        {% endif %}
     </nav>
 </div>
