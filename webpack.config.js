@@ -39,6 +39,7 @@ Encore
     .addPlugin(new CopyPlugin({
         patterns: [
             { from: 'public/images', to: 'images' },
+            { from: 'assets/images', to: 'assets' },
         ]
     }))
 
