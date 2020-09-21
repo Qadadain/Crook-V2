@@ -5,6 +5,7 @@ html, body {
     background-color: #F5F9FC;
     font-family: 'Open Sans', sans-serif;
 }
+
 .container {
     height: 100%;
     display: flex;
@@ -30,7 +31,8 @@ html, body {
     &::before, &::after {
         content: "";
         position: absolute;
-        top: 0; left: 0;
+        top: 0;
+        left: 0;
         width: 100%;
         background: #000;
         height: 4px;
@@ -49,7 +51,7 @@ html, body {
         transition: width .5s ease;
     }
 
-    .card-image{
+    .card-image {
         height: 35px;
         width: 35px;
         margin-bottom: 0.2em;
@@ -85,13 +87,17 @@ html, body {
             color: #6E6E70;
             line-height: 1.4em;
         }
-.author{
-    display: flex;
-}
-        button{
+
+        .author {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        button {
             margin-bottom: 0.7em
         }
-        .button{
+
+        .button {
             display: flex;
             justify-content: flex-end;
         }
