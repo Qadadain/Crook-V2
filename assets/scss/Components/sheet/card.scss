@@ -129,4 +129,8 @@ html, body {
             transform: none;
         }
     }
+    .mdl-button--colored{
+        background-color: $color-accent;
+        color: $primary;
+    }
 }
