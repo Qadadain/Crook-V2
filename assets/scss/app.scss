@@ -1,2 +1,6 @@
-@import "~materialize-css/sass/materialize";
+@import "~material-design-lite/material.min.css";
 @import "main";
+@import "Components/navbar";
+@import "Components/footer";
+@import "Components/sheet/card";
+@import "sheet/show";

@@ -19,15 +19,25 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => 'Email :'
+                'label' => 'Email',
+                'attr' => ['class' => 'mdl-textfield__input'],
+                'label_attr' => ['class' => 'mdl-textfield__label'],
             ])
             ->add('pseudo', TextType::class, [
-                'label' => 'pseudo :',
+                'label' => 'Pseudo',
+                'attr' => ['class' => 'mdl-textfield__input'],
+                'label_attr' => ['class' => 'mdl-textfield__label'],
             ])
             ->add('plainPassword', RepeatedType::class, array(
                     'type' => PasswordType::class,
-                    'first_options' => array('label' => 'Mot de passe :'),
-                    'second_options' => array('label' => 'Confirmer votre mot de passe :'),
+                    'first_options' => array('label' => 'Mot de passe :',
+                    'attr' => ['class' => 'mdl-textfield__input'],
+                'label_attr' => ['class' => 'mdl-textfield__label'],
+                    ),
+                    'second_options' => array('label' => 'Confirmer votre mot de passe :',
+                        'attr' => ['class' => 'mdl-textfield__input'],
+                        'label_attr' => ['class' => 'mdl-textfield__label'],
+                        ),
                     'mapped' => false,
                     'constraints' => [
                         new NotBlank([

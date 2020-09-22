@@ -3,9 +3,9 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-    <div class="row">
-
-        <div class="col s4 push-s4">
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--4-col"></div>
+        <div class="mdl-cell mdl-cell--4-col">
             <form method="post">
                 {% if error %}
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -16,13 +16,19 @@
                         You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
                     </div>
                 {% endif %}
-
-                <h3 class="h3 mb-3 font-weight-normal">Connexion</h3>
-                <label for="inputEmail">Email :</label>
-                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control"
-                       required autofocus>
-                <label for="inputPassword">Mot de passe :</label>
-                <input type="password" name="password" id="inputPassword" class="form-control" required>
+                <div>
+                    <h3 class="h3 mb-3 font-weight-normal">Connexion</h3>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="email" value="{{ last_username }}" name="email"
+                           id="inputEmail" required>
+                    <label class="mdl-textfield__label" for="inputEmail">Email </label>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input type="password" name="password" id="inputPassword" class="mdl-textfield__input"
+                           required>
+                    <label class="mdl-textfield__label" for="inputPassword">Mot de passe</label>
+                </div>
 
                 <input type="hidden" name="_csrf_token"
                        value="{{ csrf_token('authenticate') }}"
@@ -39,10 +45,12 @@
                 </div>
                 #}
                 <p>Vous n'avez pas encore de compte ? <a href="{{ path('app_register') }}">Inscrivez vous !</a></p>
-                <button class="btn btn-lg btn-primary" type="submit">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+                        type="submit">
                     Se connecter
                 </button>
             </form>
         </div>
+        <div class="mdl-cell mdl-cell--4-col"></div>
     </div>
 {% endblock %}

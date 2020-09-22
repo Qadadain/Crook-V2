@@ -85,7 +85,6 @@ class User implements UserInterface
      */
     private ?File $imageFile = null;
 
-
     public function __construct()
     {
         $this->sheets = new ArrayCollection();

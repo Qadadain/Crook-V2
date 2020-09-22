@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+    {% block meta %}{% endblock %}
+{% include 'Components/_navbar.html.twig' %}
+</head>
+<body>
+<main class="mdl-layout__content">
+    <div class="page-content content-base">
+        {% block body %}
         {% endblock %}
-        {% block meta %}{% endblock %}
-    </head>
-    <body>
-    {% include 'Components/_navbar.html.twig'%}
-    <main>
-        {% block body %}{% endblock %}
-    </main>
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    {% include 'Components/_footer.html.twig' %}
-    </body>
+    </div>
+</main>
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+{% include 'Components/_footer.html.twig' %}
+</body>
 </html>

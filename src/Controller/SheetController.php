@@ -22,7 +22,7 @@ class SheetController extends AbstractController
      * @param SheetRepository $sheetRepository
      * @return Response
      */
-    public function index(SheetRepository $sheetRepository)
+    public function index(SheetRepository $sheetRepository): Response
     {
         $sheets = $sheetRepository->findAll();
 
@@ -77,4 +77,15 @@ class SheetController extends AbstractController
         throw new Exception('Vous n\'êtes pas l\'auteur de ce sheet ou veuillez vous connecter', 401);
     }
 
+    /**
+     * @Route("/{id}", name="show", requirements={"id"="[0-9]+"})
+     * @param Sheet $sheet
+     * @return Response
+     */
+    public function show(Sheet $sheet): Response
+    {
+        return $this->render('sheet/show.html.twig', [
+            'sheet' => $sheet,
+        ]);
+    }
 }
