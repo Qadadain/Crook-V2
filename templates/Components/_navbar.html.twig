@@ -30,11 +30,11 @@
         </div>
     </header>
     <div class="mdl-layout__drawer">
-        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <div class="demo-drawer-header">
-            <img src="{{ asset('/build/images/avatar/') }}{{ user.avatar }}" alt="avatar" class="avatar" height="80"
+            <img src="{{ asset('/build/images/avatar/') }}{{ app.user.avatar }}" alt="avatar" class="avatar" height="80"
                  width="80">
-            <h6 class="h6-navbar">Salut, {{ user.pseudo }}</h6>
+            <h6 class="h6-navbar">Salut, {{ app.user.pseudo }}</h6>
         </div>
         <nav class="mdl-navigation">
             <a class="mdl-navigation__link" href="{{ path('profile_my_sheet') }}">Mes Sheets</a>

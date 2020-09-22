@@ -1,21 +1,27 @@
 body {
     .sheet-language {
         display: flex;
+        align-items: center;
+
+    }
+    .sheet-avatar {
+        height: 50px;
+        width: 50px;
+        border-radius: 50px;
+        margin-right: 0.4em;
+    }
+    .sheet-author {
+        display: flex;
+        align-items: flex-end;
 
         .sheet-image {
             height: 50px;
             width: 50px;
-            border-radius: 50px;
             margin-right: 0.4em;
         }
 
-        .sheet-author {
-            display: flex;
-            align-items: flex-end;
-
-            p {
-                margin-right: 10px;
-            }
+        p {
+            margin-right: 10px;
         }
     }
 }

@@ -28,12 +28,12 @@ class User implements UserInterface
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private ?int $id;
+    private ?int $id = null;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
-    private ?string $email;
+    private ?string $email = null;
 
     /**
      * @ORM\Column(type="json")
@@ -49,12 +49,12 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private ?string $pseudo;
+    private ?string $pseudo = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $avatar;
+    private ?string $avatar = null;
 
     /**
      * @ORM\Column(type="datetime")
@@ -83,7 +83,8 @@ class User implements UserInterface
      *
      * @var File|null
      */
-    private ?File $imageFile;
+    private ?File $imageFile = null;
+
 
 
     public function __construct()
