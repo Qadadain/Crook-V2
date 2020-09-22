@@ -3,11 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\SheetRepository;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=SheetRepository::class)
  * @ORM\HasLifecycleCallbacks()
+ * @UniqueEntity("slug")
  */
 class Sheet
 {
@@ -54,6 +56,11 @@ class Sheet
      * @ORM\JoinColumn(nullable=false)
      */
     private ?Language $language;
+
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     */
+    private $slug;
 
     public function getId(): ?int
     {
@@ -147,6 +154,18 @@ class Sheet
     public function setLanguage(?Language $language): self
     {
         $this->language = $language;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Repository\TutorialRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
  * @ORM\Entity(repositoryClass=TutorialRepository::class)
@@ -170,5 +169,4 @@ class Tutorial
 
         return $this;
     }
-
 }

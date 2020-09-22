@@ -78,7 +78,7 @@ class SheetController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="show", requirements={"id"="[0-9]+"})
+     * @Route("/{slug}", name="show", requirements={"slug"="[a-z]+|-"})
      * @param Sheet $sheet
      * @return Response
      */

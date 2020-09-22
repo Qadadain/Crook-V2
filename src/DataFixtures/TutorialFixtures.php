@@ -7,12 +7,13 @@ use App\Entity\Tutorial;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class TutorialFixtures extends Fixture implements DependentFixtureInterface
 {
     public const TUTORIAL = [
         [
-            'title' => 'Titre est ICI du tuto',
+            'title' => 'Titre est ICI du tuto t',
             'description' => 'La description du tuto est la suivante',
             'content' => 'tutu toto tuto Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pretium nibh ipsum consequat nisl 
               vel pretium lectus quam id. Ultricies tristique nulla aliquet enim tortor at auctor urna. Id aliquet lectus proin nibh nisl condimentum id.
@@ -25,7 +26,7 @@ class TutorialFixtures extends Fixture implements DependentFixtureInterface
                Ultricies mi eget mauris pharetra. Cras ornare arcu dui vivamus arcu felis bibendum ut tristique.'
         ],
         [
-            'title' => 'Titre est ICI du tuto',
+            'title' => 'Titre est ICI du tuto to',
             'description' => 'La description du tuto est la suivante',
             'content' => 'tutu toto tuto Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pretium nibh ipsum consequat nisl 
               vel pretium lectus quam id. Ultricies tristique nulla aliquet enim tortor at auctor urna. Id aliquet lectus proin nibh nisl condimentum id.
@@ -38,7 +39,7 @@ class TutorialFixtures extends Fixture implements DependentFixtureInterface
                Ultricies mi eget mauris pharetra. Cras ornare arcu dui vivamus arcu felis bibendum ut tristique.'
         ],
         [
-            'title' => 'Titre est ICI du tuto',
+            'title' => 'Titre est ICI du tuto tot',
             'description' => 'La description du tuto est la suivante',
             'content' => 'tutu toto tuto Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pretium nibh ipsum consequat nisl 
               vel pretium lectus quam id. Ultricies tristique nulla aliquet enim tortor at auctor urna. Id aliquet lectus proin nibh nisl condimentum id.
@@ -51,7 +52,7 @@ class TutorialFixtures extends Fixture implements DependentFixtureInterface
                Ultricies mi eget mauris pharetra. Cras ornare arcu dui vivamus arcu felis bibendum ut tristique.'
         ],
         [
-            'title' => 'Titre est ICI du tuto',
+            'title' => 'Titre est ICI du tuto toto',
             'description' => 'La description du tuto est la suivante',
             'content' => 'tutu toto tuto Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pretium nibh ipsum consequat nisl 
               vel pretium lectus quam id. Ultricies tristique nulla aliquet enim tortor at auctor urna. Id aliquet lectus proin nibh nisl condimentum id.
@@ -64,7 +65,7 @@ class TutorialFixtures extends Fixture implements DependentFixtureInterface
                Ultricies mi eget mauris pharetra. Cras ornare arcu dui vivamus arcu felis bibendum ut tristique.'
         ],
         [
-            'title' => 'Titre est ICI du tuto',
+            'title' => 'Titre est ICI du tuto toto t',
             'description' => 'La description du tuto est la suivante',
             'content' => 'tutu toto tuto Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pretium nibh ipsum consequat nisl 
               vel pretium lectus quam id. Ultricies tristique nulla aliquet enim tortor at auctor urna. Id aliquet lectus proin nibh nisl condimentum id.
@@ -77,7 +78,7 @@ class TutorialFixtures extends Fixture implements DependentFixtureInterface
                Ultricies mi eget mauris pharetra. Cras ornare arcu dui vivamus arcu felis bibendum ut tristique.'
         ],
         [
-            'title' => 'Titre est ICI du tuto',
+            'title' => 'Titre est ICI du tuto toto ta',
             'description' => 'La description du tuto est la suivante',
             'content' => 'tutu toto tuto Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pretium nibh ipsum consequat nisl 
               vel pretium lectus quam id. Ultricies tristique nulla aliquet enim tortor at auctor urna. Id aliquet lectus proin nibh nisl condimentum id.
@@ -96,18 +97,28 @@ class TutorialFixtures extends Fixture implements DependentFixtureInterface
         return [UserFixtures::class, LanguageFixtures::class];
     }
 
+    private SluggerInterface $slugger;
+
+    public function __construct(SluggerInterface $slugger)
+    {
+        $this->slugger = $slugger;
+    }
+
     public function load(ObjectManager $manager)
     {
+        $i = 0;
         foreach (self::TUTORIAL as $data) {
             $sheet = new Tutorial();
             $author = random_int(1, 20);
             $language = random_int(1, 7);
-            $sheet->setTitle($data['title']);
+            $sheet->setTitle($data['title'] . $i);
             $sheet->setDescription($data['description']);
             $sheet->setContent($data['content']);
             $sheet->setAuthor($manager->find('App:User', $author));
             $sheet->setLanguage($manager->find('App:Language', $language));
+            $sheet->setSlug($this->slugger->slug($data['title']));
             $manager->persist($sheet);
+            $i++;
         }
         $manager->flush();
     }
