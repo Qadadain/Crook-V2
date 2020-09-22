@@ -6,12 +6,13 @@ use App\Entity\Sheet;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class SheetFixtures extends Fixture implements DependentFixtureInterface
 {
     public const SHEET = [
         [
-            'title' => 'Titre est ICI',
+            'title' => 'Titre est ICI t',
             'description' => 'La description est la suivante',
             'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pretium nibh ipsum consequat nisl 
               vel pretium lectus quam id. Ultricies tristique nulla aliquet enim tortor at auctor urna. Id aliquet lectus proin nibh nisl condimentum id.
@@ -24,7 +25,7 @@ class SheetFixtures extends Fixture implements DependentFixtureInterface
                Ultricies mi eget mauris pharetra. Cras ornare arcu dui vivamus arcu felis bibendum ut tristique.'
         ],
         [
-            'title' => 'Titre est ICI',
+            'title' => 'Titre est ICI to',
             'description' => 'La description est la suivante',
             'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pretium nibh ipsum consequat nisl 
               vel pretium lectus quam id. Ultricies tristique nulla aliquet enim tortor at auctor urna. Id aliquet lectus proin nibh nisl condimentum id.
@@ -37,7 +38,7 @@ class SheetFixtures extends Fixture implements DependentFixtureInterface
                Ultricies mi eget mauris pharetra. Cras ornare arcu dui vivamus arcu felis bibendum ut tristique.'
         ],
         [
-            'title' => 'Titre est ICI',
+            'title' => 'Titre est ICI tot',
             'description' => 'La description est la suivante',
             'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pretium nibh ipsum consequat nisl 
               vel pretium lectus quam id. Ultricies tristique nulla aliquet enim tortor at auctor urna. Id aliquet lectus proin nibh nisl condimentum id.
@@ -50,7 +51,7 @@ class SheetFixtures extends Fixture implements DependentFixtureInterface
                Ultricies mi eget mauris pharetra. Cras ornare arcu dui vivamus arcu felis bibendum ut tristique.'
         ],
         [
-            'title' => 'Titre est ICI',
+            'title' => 'Titre est ICI toto',
             'description' => 'La description est la suivante',
             'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pretium nibh ipsum consequat nisl 
               vel pretium lectus quam id. Ultricies tristique nulla aliquet enim tortor at auctor urna. Id aliquet lectus proin nibh nisl condimentum id.
@@ -63,7 +64,7 @@ class SheetFixtures extends Fixture implements DependentFixtureInterface
                Ultricies mi eget mauris pharetra. Cras ornare arcu dui vivamus arcu felis bibendum ut tristique.'
         ],
         [
-            'title' => 'Titre est ICI',
+            'title' => 'Titre est ICI toto t',
             'description' => 'La description est la suivante',
             'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pretium nibh ipsum consequat nisl 
               vel pretium lectus quam id. Ultricies tristique nulla aliquet enim tortor at auctor urna. Id aliquet lectus proin nibh nisl condimentum id.
@@ -76,7 +77,7 @@ class SheetFixtures extends Fixture implements DependentFixtureInterface
                Ultricies mi eget mauris pharetra. Cras ornare arcu dui vivamus arcu felis bibendum ut tristique.'
         ],
         [
-            'title' => 'Titre est ICI',
+            'title' => 'Titre est ICI toto ta',
             'description' => 'La description est la suivante',
             'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pretium nibh ipsum consequat nisl 
               vel pretium lectus quam id. Ultricies tristique nulla aliquet enim tortor at auctor urna. Id aliquet lectus proin nibh nisl condimentum id.
@@ -89,7 +90,7 @@ class SheetFixtures extends Fixture implements DependentFixtureInterface
                Ultricies mi eget mauris pharetra. Cras ornare arcu dui vivamus arcu felis bibendum ut tristique.'
         ],
         [
-            'title' => 'Titre est ICI',
+            'title' => 'Titre est ICI toto tat',
             'description' => 'La description est la suivante',
             'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pretium nibh ipsum consequat nisl 
               vel pretium lectus quam id. Ultricies tristique nulla aliquet enim tortor at auctor urna. Id aliquet lectus proin nibh nisl condimentum id.
@@ -102,7 +103,7 @@ class SheetFixtures extends Fixture implements DependentFixtureInterface
                Ultricies mi eget mauris pharetra. Cras ornare arcu dui vivamus arcu felis bibendum ut tristique.'
         ],
         [
-            'title' => 'Titre est ICI',
+            'title' => 'Titre est ICI toto tata',
             'description' => 'La description est la suivante',
             'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pretium nibh ipsum consequat nisl 
               vel pretium lectus quam id. Ultricies tristique nulla aliquet enim tortor at auctor urna. Id aliquet lectus proin nibh nisl condimentum id.
@@ -121,6 +122,13 @@ class SheetFixtures extends Fixture implements DependentFixtureInterface
         return [UserFixtures::class, LanguageFixtures::class];
     }
 
+    private SluggerInterface $slugger;
+
+    public function __construct(SluggerInterface $slugger)
+    {
+        $this->slugger = $slugger;
+    }
+
     public function load(ObjectManager $manager)
     {
         foreach (self::SHEET as $data) {
@@ -132,6 +140,7 @@ class SheetFixtures extends Fixture implements DependentFixtureInterface
             $sheet->setContent($data['content']);
             $sheet->setAuthor($manager->find('App:User', $author));
             $sheet->setLanguage($manager->find('App:Language', $language));
+            $sheet->setSlug($this->slugger->slug($data['title']));
             $manager->persist($sheet);
         }
         $manager->flush();
