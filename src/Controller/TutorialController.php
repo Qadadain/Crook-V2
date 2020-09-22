@@ -18,7 +18,7 @@ class TutorialController extends AbstractController
 {
     /**
      * @Route("/", name="index")
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function index(): Response
     {
@@ -29,7 +29,7 @@ class TutorialController extends AbstractController
 
     /**
      * @Route("/new", name="new")
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function new(): Response
     {
@@ -41,12 +41,13 @@ class TutorialController extends AbstractController
 
     /**
      * @Route("/{slug}", name="show")
+     * @param Tutorial $tutorial
      * @return Response
      */
     public function show(Tutorial $tutorial): Response
     {
         return $this->render('tutorial/show.html.twig', [
-           'tutorial' => $tutorial,
+            'tutorial' => $tutorial,
         ]);
     }
 

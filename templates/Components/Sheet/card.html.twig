@@ -13,7 +13,7 @@
                             <p>par {{ sheet.author.pseudo }}</p>
                         </div>
                         <div class="button">
-                            <a href="{{ path('sheet_show', {'id': sheet.id }) }}">
+                            <a href="{{ path('sheet_show', {'slug': sheet.slug }) }}">
                                 <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
                                     <i class="material-icons">open_in_new</i>
                                 </button>

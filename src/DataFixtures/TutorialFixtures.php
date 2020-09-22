@@ -116,7 +116,7 @@ class TutorialFixtures extends Fixture implements DependentFixtureInterface
             $sheet->setContent($data['content']);
             $sheet->setAuthor($manager->find('App:User', $author));
             $sheet->setLanguage($manager->find('App:Language', $language));
-            $sheet->setSlug($this->slugger->slug($data['title']));
+            $sheet->setSlug($this->slugger->slug($data['title'])->lower());
             $manager->persist($sheet);
             $i++;
         }
