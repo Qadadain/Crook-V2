@@ -4,10 +4,13 @@ namespace App\Entity;
 
 use App\Repository\TutorialRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
  * @ORM\Entity(repositoryClass=TutorialRepository::class)
  * @ORM\HasLifecycleCallbacks()
+ * @UniqueEntity("slug")
  */
 class Tutorial
 {
@@ -16,7 +19,7 @@ class Tutorial
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private ?int $id;
+    private ?int $id = null;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -53,6 +56,11 @@ class Tutorial
      * @ORM\ManyToOne(targetEntity=Language::class, inversedBy="tutorials")
      */
     private ?Language $language;
+
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     */
+    private $slug;
 
     public function getId(): ?int
     {
@@ -150,4 +158,17 @@ class Tutorial
 
         return $this;
     }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
 }

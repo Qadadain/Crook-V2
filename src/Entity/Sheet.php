@@ -16,22 +16,22 @@ class Sheet
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private ?int $id;
+    private ?int $id = null;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private ?string $title;
+    private string $title;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private ?string $description;
+    private string $description;
 
     /**
      * @ORM\Column(type="text")
      */
-    private ?string $content;
+    private string $content;
 
     /**
      * @ORM\Column(type="datetime")

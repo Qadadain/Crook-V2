@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
 
@@ -29,6 +30,8 @@ class UserCrudController extends AbstractCrudController
             EmailField::new('email', 'Email'),
             ImageField::new('imageFile')
                 ->setFormType(VichImageType::class)->hideOnIndex(),
+            TextField::new('password', 'Mot de passe')
+            ->setFormType(PasswordType::class)->hideOnIndex(),
             ImageField::new('avatar', 'Avatar')->setBasePath($this->getParameter('file_avatar'))->hideOnForm(),
             DateField::new('createAt', 'Crée le')->hideOnForm(),
             DateField::new('updateAt', 'Maj')->hideOnForm(),
