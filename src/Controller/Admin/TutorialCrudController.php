@@ -22,7 +22,6 @@ class TutorialCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id')->hideOnForm(),
             TextField::new('title', 'Titre'),
             TextField::new('description', 'Description'),
             TextEditorField::new('content', 'Contenu'),
@@ -36,6 +35,6 @@ class TutorialCrudController extends AbstractCrudController
     {
         return $crud
 
-            ->setSearchFields(['id', 'title', 'description', 'content', 'author.pseudo', 'language.name', 'createAt', 'updateAt']);
+            ->setSearchFields(['title', 'description', 'content', 'author.pseudo', 'language.name', 'createAt', 'updateAt']);
     }
 }

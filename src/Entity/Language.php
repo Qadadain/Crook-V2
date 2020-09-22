@@ -22,27 +22,27 @@ class Language
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private ?int $id;
+    private ?int $id = null;
 
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private ?string $name;
+    private ?string $name = null;
 
     /**
      * @ORM\Column(type="string", length=7)
      */
-    private ?string $color;
+    private ?string $color = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $image;
+    private ?string $image = null;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private ?bool $isValid;
+    private ?bool $isValid = null;
 
     /**
      * @ORM\Column(type="datetime")
@@ -71,7 +71,7 @@ class Language
      *
      * @var File|null
      */
-    private ?File $imageFile;
+    private ?File $imageFile = null;
 
     public function __construct()
     {
