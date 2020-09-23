@@ -13,9 +13,9 @@
                    href="{{ path('sheet_index') }}">Sheets</a>
                 <a class="mdl-navigation__link mdl-typography--text-uppercase" href="{{ path('home') }}">Tutoriels</a>
                 <a class="mdl-navigation__link mdl-typography--text-uppercase"
-                   href="{{ path('home') }}">Technologies</a>
+                   href="{{ path('language_index') }}">Technologies</a>
                 {% if is_granted('ROLE_ADMIN') %}
-                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="{{ path('home') }}">Administration</a>
+                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="{{ path('admin') }}">Administration</a>
                 {% endif %}
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
                   mdl-textfield--floating-label mdl-textfield--align-right">

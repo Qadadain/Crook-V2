@@ -40,6 +40,7 @@ Encore
         patterns: [
             { from: 'public/images', to: 'images' },
             { from: 'public/images', to: 'logo' },
+            { from: 'public/images', to: 'language' },
         ]
     }))
 

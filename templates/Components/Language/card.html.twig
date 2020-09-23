@@ -1,0 +1,17 @@
+<div class="mdl-grid">
+    {% for language in languages %}
+        <div class="mdl-cell mdl-cell--3-col">
+          <div>
+                <a class="center" href="{{ path('language_show', {'id': language.id }) }}">
+                    <div class="img-language">
+                        <img class="mobile-apple" src="{{ asset('/images/language/') }}{{ language.image }}"
+                             alt="le logo de {{ language.name }}" width="100px"/>
+                    </div>
+                    <div class="text-language">
+                        <p class="figure-caption text-center"> Les sheets {{ language.name }}.</p>
+                    </div>
+                </a>
+          </div>
+        </div>
+    {% endfor %}
+</div>
