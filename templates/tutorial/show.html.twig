@@ -4,9 +4,33 @@
 {% endblock %}
 {% block body %}
     <div class="mdl-grid">
-        <h1>{{ tutorial.title }}</h1>
-        <main>
-            {{ tutorial.content }}
-        </main>
+        <div class="mdl-cell mdl-cell--3-col"></div>
+        <div class="mdl-cell mdl-cell--6-col">
+            <div>
+                <h2>{{ tutorial.title }}</h2>
+            </div>
+            <div class="show-author">
+                <img class="show-avatar"
+                     src="{{ asset('/build/images/avatar/') }}{{ tutorial.author.avatar }}"
+                     alt="">
+                <div>
+                    <h6 class="show-author-date">{{ tutorial.author.pseudo }}</h6>
+                    <p class="show-author-date">posté le DATE</p>
+                    <p class="show-author-date">Modifié le DATE</p>
+                </div>
+            </div>
+            <div>
+                <h4>{{ tutorial.description }}</h4>
+            </div>
+            <hr>
+            <main>
+                {{ tutorial.content | raw }}
+            </main>
+            <div>
+                <img class="" src="{{ asset('/build/images/language/') }}{{ tutorial.language.image }}"
+                     alt="">
+                <h5>{{ tutorial.language.name }}</h5>
+            </div>
+        </div>
     </div>
 {% endblock %}

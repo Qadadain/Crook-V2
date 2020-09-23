@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Tutorial;
 use App\Form\TutorialType;
+use App\Repository\TutorialRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Config\Definition\Exception\Exception;
@@ -18,12 +19,15 @@ class TutorialController extends AbstractController
 {
     /**
      * @Route("/", name="index")
+     * @param TutorialRepository $tutorial
      * @return Response
      */
-    public function index(): Response
+    public function index(TutorialRepository $tutorial): Response
     {
+        $tutorials = $tutorial->findAll();
+
         return $this->render('tutorial/index.html.twig', [
-            'controller_name' => 'TutorialController',
+            'tutorials' => $tutorials,
         ]);
     }
 
