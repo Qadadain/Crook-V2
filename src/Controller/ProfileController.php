@@ -19,6 +19,7 @@ class ProfileController extends AbstractController
     public function index()
     {
         return $this->render('profile/index.html.twig', [
+            'user' => $this->getUser(),
         ]);
     }
 
@@ -51,18 +52,19 @@ class ProfileController extends AbstractController
      */
     public function userSheet(): Response
     {
-        return $this->render('sheet/index.html.twig', [
+
+        return $this->render('profile/mySheet.html.twig', [
             'sheets' => $this->getUser()->getSheets(),
         ]);
     }
 
     /**
-     * @Route("/mes-tutoriels", name="my_sheet")
+     * @Route("/mes-tutoriels", name="my_tutorial")
      * @return Response
      */
-    public function userTutorial()
+    public function userTutorial(): Response
     {
-        return $this->render('sheet/index.html.twig', [
+        return $this->render('profile/myTutorial.html.twig', [
             'tutorials' => $this->getUser()->getTutorials(),
         ]);
     }
