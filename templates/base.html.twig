@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
-    {% block stylesheets %}
-        {{ encore_entry_link_tags('app') }}
-    {% endblock %}
+    {{ encore_entry_link_tags('app') }}
+    {% block stylesheets %}{% endblock %}
     {% block meta %}{% endblock %}
     {% include 'Components/_navbar.html.twig' %}
 </head>
@@ -16,9 +15,8 @@
         {% endblock %}
     </div>
 </main>
-{% block javascripts %}
-    {{ encore_entry_script_tags('app') }}
-{% endblock %}
+{{ encore_entry_script_tags('app') }}
+{% block javascripts %}{% endblock %}
 {% include 'Components/_footer.html.twig' %}
 </body>
 </html>
