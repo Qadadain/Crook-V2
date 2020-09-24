@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\UserType;
+use App\Repository\TutorialRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -60,12 +61,15 @@ class ProfileController extends AbstractController
 
     /**
      * @Route("/mes-tutoriels", name="my_tutorial")
+     * @param TutorialRepository $tutorialRepository
      * @return Response
      */
-    public function userTutorial(): Response
+    public function userTutorial(TutorialRepository  $tutorialRepository): Response
     {
+        $tutorials = $tutorialRepository->findBy(['author' => $this->getUser()]);
+
         return $this->render('profile/myTutorial.html.twig', [
-            'tutorials' => $this->getUser()->getTutorials(),
+            'tutorials' => $tutorials,
         ]);
     }
 
