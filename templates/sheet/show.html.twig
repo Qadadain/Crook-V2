@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('build/ckeditor/extra-plugins/codesnippet/lib/highlight/styles/railscasts.css') }}"/>
+    <link rel="stylesheet"
+          href="{{ asset('build/ckeditor/extra-plugins/codesnippet/lib/highlight/styles/railscasts.css') }}"/>
     {{ parent() }}
 {% endblock %}
 {% block body %}
@@ -20,13 +21,14 @@
             </div>
             <div class="sheet-author">
                 <div>
-                <h6>Crée par  <img class="sheet-avatar" src="{{ asset('/build/images/avatar/') }}{{ sheet.author.avatar }}"
-                                   alt=""> {{ sheet.author.pseudo }} , le ...</h6>
+                    <h6>Crée par <img class="sheet-avatar"
+                                      src="{{ asset('/build/images/avatar/') }}{{ sheet.author.avatar }}"
+                                      alt=""> {{ sheet.author.pseudo }} , le ...</h6>
                 </div>
                 <div>
-                <img class="sheet-image" src="{{ asset('/build/images/language/') }}{{ sheet.language.image }}"
-                     alt="">
-                <h3>{{ sheet.language.name }}</h3>
+                    <img class="sheet-image" src="{{ asset('/build/images/language/') }}{{ sheet.language.image }}"
+                         alt="">
+                    <h3>{{ sheet.language.name }}</h3>
                 </div>
             </div>
         </div>

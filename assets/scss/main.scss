@@ -3,41 +3,48 @@ $secondary: #343a40;
 $tertiary: snow;
 
 .bck {
-  &-primary {
-    background-color: $primary;
-  }
-  &-secondary {
-    background-color: $secondary;
-  }
-  &-tertiary {
-    background-color: $tertiary;
-  }
-}
-.text {
-  &-primary {
-    color: $primary;
-  }
-  &-secondary {
-    color: $secondary;
-  }
-  &-tertiary {
-    color: $tertiary;
-  }
-}
-body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
+    &-primary {
+        background-color: $primary;
+    }
 
+    &-secondary {
+        background-color: $secondary;
+    }
+
+    &-tertiary {
+        background-color: $tertiary;
+    }
+}
+
+.text {
+    &-primary {
+        color: $primary;
+    }
+
+    &-secondary {
+        color: $secondary;
+    }
+
+    &-tertiary {
+        color: $tertiary;
+    }
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
 main {
-  flex: 1 0 auto;
+    flex: 1 0 auto;
 }
+
 .cke_dialog_ui_input_select {
-  display: unset;
+    display: unset;
 }
-.hljs{
-  overflow-x: auto;
-  padding: 1em;
+
+.hljs {
+    overflow-x: auto;
+    padding: 1em;
 }

@@ -3,8 +3,9 @@
     Crook - Tutoriel - {{ tutorial.title }}
 {% endblock %}
 {% block stylesheets %}
-<link rel="stylesheet" href="{{ asset('build/ckeditor/extra-plugins/codesnippet/lib/highlight/styles/railscasts.css') }}"/>
-{{ parent() }}
+    <link rel="stylesheet"
+          href="{{ asset('build/ckeditor/extra-plugins/codesnippet/lib/highlight/styles/railscasts.css') }}"/>
+    {{ parent() }}
 {% endblock %}
 {% block body %}
     <div class="mdl-grid">

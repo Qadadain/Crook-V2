@@ -64,7 +64,7 @@ class ProfileController extends AbstractController
      * @param TutorialRepository $tutorialRepository
      * @return Response
      */
-    public function userTutorial(TutorialRepository  $tutorialRepository): Response
+    public function userTutorial(TutorialRepository $tutorialRepository): Response
     {
         $tutorials = $tutorialRepository->findBy(['author' => $this->getUser()]);
 
