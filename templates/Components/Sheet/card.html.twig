@@ -4,9 +4,9 @@
             <div class="content">
                 <img class="card-image" src="{{ asset('/build/images/language/') }}{{ sheet.language.image }}" alt="">
                 <h6>{{ sheet.title }}</h6>
-                        <div>
-                            <i class="material-icons favorite">favorite_border</i>
-                        </div>
+                <div>
+                    <i class="material-icons favorite" data-id="{{ sheet.id }}">favorite_border</i>
+                </div>
                 <div class="hover_content">
                     <div>
                         <p>{{ sheet.description }}</p>

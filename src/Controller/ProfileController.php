@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Form\UserType;
+use App\Repository\SheetRepository;
 use App\Repository\TutorialRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -73,4 +75,18 @@ class ProfileController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/add-favorite", name="add-favorite")
+     * @param Request $request
+     * @param SheetRepository $sheetRepository
+     * @return JsonResponse
+     */
+    public function addfavorite(Request $request, SheetRepository $sheetRepository): JsonResponse
+    {
+        $id = $request->request->get('id');
+        $sheet = $sheetRepository->find($id);
+        $this->getUser()->addFavorite($sheet);
+
+        return new JsonResponse('Votre Favori c\'est bien ajouté', 200);
+    }
 }

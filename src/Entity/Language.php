@@ -27,7 +27,7 @@ class Language
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private ?string $name = '';
+    private string $name;
 
     /**
      * @ORM\Column(type="string", length=7)
@@ -80,7 +80,7 @@ class Language
     }
     public function  __toString()
     {
-        return $this->getName();
+        return $this->name;
     }
 
     public function getId(): ?int

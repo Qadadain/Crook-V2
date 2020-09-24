@@ -49,7 +49,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private ?string $pseudo = '';
+    private string $pseudo;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -98,7 +98,7 @@ class User implements UserInterface
     }
     public function  __toString()
     {
-        return $this->getPseudo();
+        return $this->pseudo;
     }
 
     public function getId(): ?int
