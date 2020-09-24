@@ -1,4 +1,8 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('build/ckeditor/extra-plugins/codesnippet/lib/highlight/styles/railscasts.css') }}"/>
+    {{ parent() }}
+{% endblock %}
 {% block body %}
     <div class="mdl-grid">
         <div class="mdl-cell mdl-cell--3-col"></div>
@@ -27,4 +31,11 @@
             </div>
         </div>
     </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('build/ckeditor/extra-plugins/codesnippet/lib/highlight/highlight.pack.js') }}"></script>
+    <script type="text/javascript">
+        hljs.initHighlightingOnLoad();
+    </script>
 {% endblock %}

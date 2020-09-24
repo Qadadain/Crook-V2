@@ -22,27 +22,27 @@ class Language
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private ?int $id = null;
+    private ?int $id = 0;
 
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private ?string $name = null;
+    private ?string $name = '';
 
     /**
      * @ORM\Column(type="string", length=7)
      */
-    private ?string $color = null;
+    private ?string $color = '';
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $image = null;
+    private ?string $image = '';
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private ?bool $isValid = null;
+    private ?bool $isValid = false;
 
     /**
      * @ORM\Column(type="datetime")

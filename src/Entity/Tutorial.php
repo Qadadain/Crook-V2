@@ -23,17 +23,17 @@ class Tutorial
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private ?string $title;
+    private ?string $title = '';
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private ?string $description;
+    private ?string $description = '';
 
     /**
      * @ORM\Column(type="text")
      */
-    private ?string $content;
+    private ?string $content = '';
 
     /**
      * @ORM\Column(type="datetime")
@@ -53,13 +53,14 @@ class Tutorial
 
     /**
      * @ORM\ManyToOne(targetEntity=Language::class, inversedBy="tutorials")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private ?Language $language;
+    private Language $language;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
      */
-    private $slug;
+    private $slug = '';
 
     public function getId(): ?int
     {
