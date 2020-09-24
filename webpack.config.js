@@ -19,7 +19,6 @@ Encore
     .setPublicPath('/build')
 
     .addEntry('app', './assets/js/app.js')
-    .addEntry('highlight', './assets/js/highlightInit.js')
 
     .splitEntryChunks()
 

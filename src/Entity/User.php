@@ -85,10 +85,16 @@ class User implements UserInterface
      */
     private ?File $imageFile = null;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Sheet::class, inversedBy="favorites")
+     */
+    private $favorite;
+
     public function __construct()
     {
         $this->sheets = new ArrayCollection();
         $this->tutorials = new ArrayCollection();
+        $this->favorite = new ArrayCollection();
     }
     public function  __toString()
     {
@@ -305,6 +311,32 @@ class User implements UserInterface
     public function getImageFile(): ?File
     {
         return $this->imageFile;
+    }
+
+    /**
+     * @return Collection|Sheet[]
+     */
+    public function getFavorite(): Collection
+    {
+        return $this->favorite;
+    }
+
+    public function addFavorite(Sheet $favorite): self
+    {
+        if (!$this->favorite->contains($favorite)) {
+            $this->favorite[] = $favorite;
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(Sheet $favorite): self
+    {
+        if ($this->favorite->contains($favorite)) {
+            $this->favorite->removeElement($favorite);
+        }
+
+        return $this;
     }
 
 }
