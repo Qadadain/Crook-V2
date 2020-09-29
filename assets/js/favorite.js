@@ -6,10 +6,16 @@ for (let i = 0; favorites.length > i; i++) {
         const id = favorites[i].getAttribute('data-id');
         const formData = new FormData();
         formData.append('id', id)
-        favorite(formData).then(r => {
-console.log(r)
-        }).catch(er => {
-            console.log(er)
+        favorite(formData).then(response => {
+            if (!response) {
+               favorites[i].textContent = 'favorite';
+                favorites[i].classList.toggle('favorite-full');
+            } else {
+                favorites[i].textContent = 'favorite_border';
+                favorites[i].classList.toggle('favorite-full');
+            }
+        }).catch(error => {
+
         })
     })
 

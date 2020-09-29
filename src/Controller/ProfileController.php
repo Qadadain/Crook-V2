@@ -5,6 +5,9 @@ namespace App\Controller;
 use App\Form\UserType;
 use App\Repository\SheetRepository;
 use App\Repository\TutorialRepository;
+use App\Repository\UserRepository;
+use App\Service\FavoriteService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -76,17 +79,44 @@ class ProfileController extends AbstractController
     }
 
     /**
+     * @Route("/mes-favoris", name="my_favorite")
+     * @return Response
+     */
+    public function userFavorite():Response
+    {
+        foreach ($this->getUser()->getFavorite() as $favoris) {
+            dump($favoris);
+        }
+        return $this->render('profile/mySheet.html.twig', [
+            'sheets' => $this->getUser()->getFavorite(),
+        ]);
+    }
+
+    /**
      * @Route("/add-favorite", name="add-favorite")
      * @param Request $request
      * @param SheetRepository $sheetRepository
+     * @param EntityManagerInterface $entityManager
      * @return JsonResponse
      */
-    public function addfavorite(Request $request, SheetRepository $sheetRepository): JsonResponse
+    public function checkFavorite(Request $request, SheetRepository $sheetRepository, EntityManagerInterface $entityManager): JsonResponse
     {
         $id = $request->request->get('id');
         $sheet = $sheetRepository->find($id);
-        $this->getUser()->addFavorite($sheet);
+        $user = $this->getUser();
 
-        return new JsonResponse('Votre Favori c\'est bien ajouté', 200);
+        if (!$user->getFavorite()->contains($sheet)) {
+            $newFavorite = $user->addFavorite($sheet);
+            $entityManager->persist($newFavorite);
+            $entityManager->flush();
+            $isRemove = false;
+        } else {
+            $removeFavorite = $user->removeFavorite($sheet);
+            $entityManager->persist($removeFavorite);
+            $entityManager->flush();
+            $isRemove = true;
+        }
+
+        return new JsonResponse($isRemove, 200);
     }
 }

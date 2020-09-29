@@ -86,7 +86,11 @@ class User implements UserInterface
     private ?File $imageFile = null;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Sheet::class, inversedBy="favorites")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Sheet")
+     * @ORM\JoinTable(name="favorites"),
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="sheet_id", referencedColumnName="id")}
+     *      )
      */
     private $favorite;
 
