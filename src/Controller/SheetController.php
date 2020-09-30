@@ -35,9 +35,9 @@ class SheetController extends AbstractController
      * @Route("/new", name="new")
      * @param Request $request
      * @param EntityManagerInterface $entityManager
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
-    public function new(Request $request, EntityManagerInterface $entityManager)
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $sheet = new Sheet();
         $form = $this->createForm(SheetType::class, $sheet);
