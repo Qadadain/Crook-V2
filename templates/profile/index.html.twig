@@ -3,22 +3,30 @@
 {% block title %}Mon Profil{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="row">
-            <div class="col s6">
-                <div>
-                    <h5>Mon Email :</h5>
-                    <p>{{ user.email }}</p>
-                </div>
-                <div>
-                    <h5>Mon Pseudo :</h5>
-                    <p>{{ user.pseudo }}</p>
-                </div>
-                <div>
-                    <h5>Mon Avatar :</h5>
-                    <img src="{{ asset('/build/images/avatar/') }}{{ user.avatar }}" alt="avatar" class="avatar" height="80" width="80">
-                </div>
-            </div>
+    <div class="container mdl-grid">
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--2-offset mdl-cell--middle d-flex align-items-center">
+            <h5 class="m-0">Mon Email :</h5>
+            <p class="m-0">{{ user.email }}</p>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--2-offset mdl-cell--middle d-flex align-items-center">
+            <h5 class="m-0">Mon Pseudo :</h5>
+            <p class="m-0">{{ user.pseudo }}</p>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--2-offset mdl-cell--middle d-flex align-items-center">
+            <h5 class="m-0">Mon Avatar :</h5>
+            <img src="{{ asset('/build/images/avatar/') }}{{ user.avatar }}" alt="avatar" class="avatar" height="80" width="80">
+        </div>
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--2-offset mdl-cell--middle d-flex align-items-center">
+            <h5 class="m-0">Nombre de sheet :</h5>
+            <p class="m-0">{{ sheetCount }}</p>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--2-offset mdl-cell--middle d-flex align-items-center">
+            <h5 class="m-0">Nombre de tuto :</h5>
+            <p class="m-0">{{ tutorialCount }}</p>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--2-offset mdl-cell--middle d-flex align-items-center">
+            <h5 class="m-0">Nombre de favoris :</h5>
+            <p class="m-0">{{ favoriteCount }}</p>
         </div>
     </div>
 {% endblock %}

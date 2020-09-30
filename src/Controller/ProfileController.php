@@ -26,6 +26,9 @@ class ProfileController extends AbstractController
     {
         return $this->render('profile/index.html.twig', [
             'user' => $this->getUser(),
+            'sheetCount' => count($this->getUser()->getSheets()),
+            'tutorialCount' => count($this->getUser()->getTutorials()),
+            'favoriteCount' => count($this->getUser()->getFavorite())
         ]);
     }
 
@@ -84,10 +87,7 @@ class ProfileController extends AbstractController
      */
     public function userFavorite():Response
     {
-        foreach ($this->getUser()->getFavorite() as $favoris) {
-            dump($favoris);
-        }
-        return $this->render('profile/mySheet.html.twig', [
+        return $this->render('profile/myFavorite.html.twig', [
             'sheets' => $this->getUser()->getFavorite(),
         ]);
     }

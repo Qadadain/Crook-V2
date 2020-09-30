@@ -3,8 +3,13 @@
 {% block title %}$user->getTurorial(){% endblock %}
 
 {% block body %}
-    <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--3-col"></div>
-        {{ include('Components/Tutorial/card.html.twig') }}
+    <div class="container mdl-grid">
+        {% if tutorials is not empty %}
+            <div class="mdl-cell mdl-cell--3-col"></div>
+            {% include 'Components/Tutorial/card.html.twig' %}
+        {% else %}
+            <h2 class="mdl-cell mdl-cell--12-col text-align-center">Vous n'avez pas encore de tutorial</h2>
+            <h4 class="mdl-cell mdl-cell--12-col text-align-center">Rendez vous ici pour créer votre premier tutorial <a href="{{ path('tutorial_new') }}">$tutorial->create()</a></h4>
+        {% endif %}
     </div>
 {% endblock %}
