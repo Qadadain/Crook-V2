@@ -49,7 +49,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private ?string $pseudo = '';
+    private string $pseudo;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -85,14 +85,24 @@ class User implements UserInterface
      */
     private ?File $imageFile = null;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Sheet")
+     * @ORM\JoinTable(name="favorites"),
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="sheet_id", referencedColumnName="id")}
+     *      )
+     */
+    private $favorite;
+
     public function __construct()
     {
         $this->sheets = new ArrayCollection();
         $this->tutorials = new ArrayCollection();
+        $this->favorite = new ArrayCollection();
     }
     public function  __toString()
     {
-        return $this->getPseudo();
+        return $this->pseudo;
     }
 
     public function getId(): ?int
@@ -305,6 +315,32 @@ class User implements UserInterface
     public function getImageFile(): ?File
     {
         return $this->imageFile;
+    }
+
+    /**
+     * @return Collection|Sheet[]
+     */
+    public function getFavorite(): Collection
+    {
+        return $this->favorite;
+    }
+
+    public function addFavorite(Sheet $favorite): self
+    {
+        if (!$this->favorite->contains($favorite)) {
+            $this->favorite[] = $favorite;
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(Sheet $favorite): self
+    {
+        if ($this->favorite->contains($favorite)) {
+            $this->favorite->removeElement($favorite);
+        }
+
+        return $this;
     }
 
 }

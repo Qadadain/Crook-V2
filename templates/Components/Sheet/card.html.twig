@@ -4,6 +4,13 @@
             <div class="content">
                 <img class="card-image" src="{{ asset('/build/images/language/') }}{{ sheet.language.image }}" alt="">
                 <h6>{{ sheet.title }}</h6>
+                {% if app.user %}
+                    <div>
+                        <i class="material-icons favorite {{ app.user.favorite.contains(sheet)  ? 'favorite-full' : '' }}" data-id="{{ sheet.id }}">
+                            {{ app.user.favorite.contains(sheet)  ? 'favorite' : 'favorite_border' }}
+                        </i>
+                    </div>
+                {% endif %}
                 <div class="hover_content">
                     <div>
                         <p>{{ sheet.description }}</p>

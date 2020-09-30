@@ -17,6 +17,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "axios": "^0.20.0",
         "ckeditor": "^4.0.0",
         "highlight.js": "^10.2.0",
         "material-design-icons": "^3.0.1",
