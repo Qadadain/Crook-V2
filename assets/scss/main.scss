@@ -29,7 +29,87 @@ $tertiary: snow;
         color: $tertiary;
     }
 }
+.text-align {
+    &-center {
+        text-align: center;
+    }
 
+    &-justify {
+        text-align: justify;
+    }
+
+    &-right {
+        text-align: right;
+    }
+
+    &-left {
+        text-align: left;
+    }
+}
+.d- {
+    &flex {
+        display: flex;
+    }
+}
+.justify-content {
+    &-center {
+        justify-content: center;
+    }
+    &-right {
+        justify-content: right;
+    }
+    &-left {
+        justify-content: left;
+    }
+}
+.align-items {
+    &-center {
+        align-items: center;
+    }
+}
+.m- {
+    &0 {
+        margin: 0;
+    }
+    &1 {
+        margin: 10px;
+    }
+    &2 {
+        margin: 20px;
+    }
+    &3 {
+        margin: 30px;
+    }
+    &4 {
+        margin: 40px;
+    }
+    &5 {
+        margin: 50px;
+    }
+}
+h {
+    &1 {
+        font-family: "Rokkitt", sans-serif;
+    }
+    &2 {
+        font-family: "Rokkitt", sans-serif;
+    }
+    &3 {
+        font-family: "Rokkitt", sans-serif;
+    }
+    &4 {
+        font-family: "Rokkitt", sans-serif;
+    }
+    &5 {
+        font-family: "Rokkitt", sans-serif;
+    }
+}
+p {
+    font-family: "Ubuntu Mono", sans-serif;
+}
+label {
+    font-family: "Ubuntu Mono", sans-serif;
+}
 body {
     display: flex;
     min-height: 100vh;
