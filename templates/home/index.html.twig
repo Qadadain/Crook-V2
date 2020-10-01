@@ -17,10 +17,12 @@
         </div>
     </div>
     <hr>
-    <div>
+    <div class="d-flex justify-content-center">
         <h4>Sheet ajouté récemment</h4>
     </div>
-    {% include 'Components/Sheet/card.html.twig' %}
+    <div class="container mdl-grid">
+        {% include 'Components/Sheet/card.html.twig' %}
+    </div>
 {% endblock %}
 {% block javascripts %}
     {{ encore_entry_script_tags('titleAnimation') }}

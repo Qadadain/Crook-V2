@@ -1,11 +1,11 @@
-
-    {% for sheet in sheets %}
+{% for sheet in sheets %}
         <div class="card mdl-cell mdl-cell--4-col">
             <div class="content">
                 <img class="card-image" src="{{ asset('/build/images/language/') }}{{ sheet.language.image }}" alt="">
                 {% if app.user %}
                     <span>
-                        <i class="material-icons favorite {{ app.user.favorite.contains(sheet)  ? 'favorite-full' : '' }}" data-id="{{ sheet.id }}">
+                        <i class="material-icons favorite {{ app.user.favorite.contains(sheet)  ? 'favorite-full' : '' }}"
+                           data-id="{{ sheet.id }}">
                             {{ app.user.favorite.contains(sheet)  ? 'favorite' : 'favorite_border' }}
                         </i>
                     </span>
@@ -30,4 +30,4 @@
                 </div>
             </div>
         </div>
-    {% endfor %}
+{% endfor %}
