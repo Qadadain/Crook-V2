@@ -1,8 +1,18 @@
 {{ form_start(form) }}
-<div class="container">
-{{ form_label(form.name) }}
-{{ form_widget(form.name) }}
-{{ form_row(form.color) }}
-    <button class="btn">enter</button>
+<div class="mdl-grid row form-language">
+    <div class="mdl-cell mdl-cell--4-col"></div>
+    <div>
+
+        <div class="mdl-cell mdl-cell--4-col mdl-grid d-flex flex-direction-column mt-5">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name) }}
+            {{ form_label(form.color) }}
+            {{ form_widget(form.color) }}
+        </div>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+                type="submit">
+            Persist
+        </button>
+    </div>
 </div>
 {{ form_end(form) }}
