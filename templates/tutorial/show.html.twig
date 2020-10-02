@@ -9,20 +9,11 @@
 {% endblock %}
 {% block body %}
     <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--3-col"></div>
-        <div class="mdl-cell mdl-cell--6-col">
+        <div class="mdl-cell mdl-cell--6-col mdl-cell--2-offset mt-5">
             <div>
-                <h2>{{ tutorial.title }}</h2>
-            </div>
-            <div class="show-author">
-                <img class="show-avatar"
-                     src="{{ asset('/build/images/avatar/') }}{{ tutorial.author.avatar }}"
-                     alt="">
-                <div>
-                    <h6 class="show-author-date">{{ tutorial.author.pseudo }}</h6>
-                    <p class="show-author-date">posté le DATE</p>
-                    <p class="show-author-date">Modifié le DATE</p>
-                </div>
+                <h2 class="m-0">{{ tutorial.title }}</h2>
+                <p class="show-author-date">posté le {{ tutorial.createAt|date("d-m-Y") }}{% if tutorial.updateAt %}, Modifié le {{ tutorial.updateAt|date("d-m-Y") }}</p>
+                {% endif %}
             </div>
             <div>
                 <h4>{{ tutorial.description }}</h4>
@@ -31,23 +22,21 @@
             <main>
                 {{ tutorial.content | raw }}
             </main>
-            <div>
-                <img class="" src="{{ asset('/build/images/language/') }}{{ tutorial.language.image }}"
+            <hr>
+        {{ include('Components/Tutorial/comment.html.twig') }}
+        </div>
+        <div class="mdl-cell mdl-cell--3-col mdl-cell--1-offset mt-5">
+            <h6>Technologie</h6>
+            <img class="logo-tech" src="{{ asset('/build/images/language/') }}{{ tutorial.language.image }}"
+                 alt="logo">
+            <div class="d-flex align-items-center mt-5">
+                <img class="show-avatar"
+                     src="{{ asset('/build/images/avatar/') }}{{ tutorial.author.avatar }}"
                      alt="">
-                <h5>{{ tutorial.language.name }}</h5>
-            </div>
-            {{ form_start(form) }}
-            {{ form_label(form.comment) }}
-            {{ form_widget(form.comment) }}
-            <button>test</button>
-            {{ form_end(form) }}
-            <div>
-                {% for comment in comments %}
-                    <div class="d-flex">
-                        <p>{{ comment.user }}</p>
-                        <p> {{ comment.comment }}</p>
-                    </div>
-                {% endfor %}
+                <div>
+                    <h6 class="m-0">auteur</h6>
+                    <p class="m-0">{{ tutorial.author.pseudo }}</p>
+                </div>
             </div>
         </div>
     </div>

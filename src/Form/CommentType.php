@@ -14,9 +14,17 @@ class CommentType extends AbstractType
     {
         $builder
             ->add('comment', TextType::class, [
-                'label' => 'Commentaire :'
-            ])
+                'label' => 'Commentaire',
+                'label_attr' => [
+                    'class' => 'mdl-textfield__label',
+                ],
+                'attr' => [
+                    'class' => 'mdl-textfield__input',
+                    'rows' => 5,
+                    'col' => 33,
 
+                ]
+            ])
         ;
     }
 
