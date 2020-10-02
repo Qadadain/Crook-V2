@@ -27,12 +27,12 @@
         </div>
         <div class="mdl-cell mdl-cell--3-col mdl-cell--1-offset mt-5">
             <h6>Technologie</h6>
-            <img class="logo-tech" src="{{ asset('/build/images/language/') }}{{ tutorial.language.image }}"
+            <img class="logo-tech" src="{{ asset('/build/images/language/' ~ tutorial.language.image) }}"
                  alt="logo">
             <div class="d-flex align-items-center mt-5">
                 <img class="show-avatar"
-                     src="{{ asset('/build/images/avatar/') }}{{ tutorial.author.avatar }}"
-                     alt="">
+                     src="{{ tutorial.author.avatar ? 'https://github.com/' ~ tutorial.author.avatar ~ '.png?size=300' : asset('/build/images/logo/__Crook_.png') }}"
+                     alt="image de profil">
                 <div>
                     <h6 class="m-0">auteur</h6>
                     <p class="m-0">{{ tutorial.author.pseudo }}</p>
