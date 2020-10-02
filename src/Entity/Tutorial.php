@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TutorialRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -61,6 +63,16 @@ class Tutorial
      * @ORM\Column(type="string", length=255, unique=true)
      */
     private $slug = '';
+
+    /**
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="tutorial")
+     */
+    private $comments;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -167,6 +179,37 @@ class Tutorial
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setTutorial($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getTutorial() === $this) {
+                $comment->setTutorial(null);
+            }
+        }
 
         return $this;
     }
