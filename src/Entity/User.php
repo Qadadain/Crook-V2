@@ -77,15 +77,6 @@ class User implements UserInterface
     private $tutorials;
 
     /**
-     * NOTE: This is not a mapped field of entity metadata, just a simple property.
-     *
-     * @Vich\UploadableField(mapping="avatar", fileNameProperty="avatar")
-     *
-     * @var File|null
-     */
-    private ?File $imageFile = null;
-
-    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Sheet")
      * @ORM\JoinTable(name="favorites"),
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
@@ -305,22 +296,6 @@ class User implements UserInterface
         }
 
         return $this;
-    }
-
-    public function setImageFile(?File $imageFile = null)
-    {
-        $this->imageFile = $imageFile;
-
-        if (null !== $imageFile) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->updateAt = new \DateTimeImmutable();
-        }
-    }
-
-    public function getImageFile(): ?File
-    {
-        return $this->imageFile;
     }
 
     /**

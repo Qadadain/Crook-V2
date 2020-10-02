@@ -5,8 +5,6 @@ namespace App\Controller;
 use App\Form\UserType;
 use App\Repository\SheetRepository;
 use App\Repository\TutorialRepository;
-use App\Repository\UserRepository;
-use App\Service\FavoriteService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;

@@ -374,6 +374,15 @@ label {
   font-family: "Ubuntu Mono", sans-serif;
 }
 
+.mdl-layout-title {
+  font-family: "Rokkitt", sans-serif;
+}
+
+nav.mdl-navigation > a.mdl-navigation__link {
+  font-family: "Rokkitt", sans-serif;
+  font-size: 18px;
+}
+
 body {
   display: flex;
   min-height: 100vh;

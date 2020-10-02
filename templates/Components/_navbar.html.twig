@@ -34,7 +34,7 @@
     <div class="mdl-layout__drawer">
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <div class="demo-drawer-header">
-            <img src="{{ asset('/build/images/avatar/') }}{{ app.user.avatar }}" alt="avatar" class="avatar" height="80"
+            <img src="{{ app.user.avatar ? 'https://github.com/' ~ app.user.avatar ~ '.png?size=300' : asset('/build/images/logo/__Crook_.png') }}" alt="avatar" class="avatar" height="80"
                  width="80">
             <h6 class="h6-navbar">Salut, {{ app.user.pseudo }}</h6>
         </div>

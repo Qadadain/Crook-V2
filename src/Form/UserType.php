@@ -21,8 +21,8 @@ class UserType extends AbstractType
             ->add('pseudo', TextType::class, [
                 'label' => 'Pseudo'
             ])
-            ->add('imageFile', VichImageType::class, [
-                'label' => 'Avatar'
+            ->add('avatar', TextType::class, [
+                'label' => 'Pseudo Github'
             ])
 
         ;

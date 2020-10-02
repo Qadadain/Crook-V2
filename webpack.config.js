@@ -39,9 +39,8 @@ Encore
     .enableSassLoader()
     .addPlugin(new CopyPlugin({
         patterns: [
-            { from: 'public/images', to: 'images' },
-            { from: 'public/images', to: 'logo' },
-            { from: 'public/images', to: 'language' },
+            { from: './assets/images/logo', to: 'images/logo' },
+            { from: './assets/images/language', to: 'images/language' },
         ]
     }))
 
