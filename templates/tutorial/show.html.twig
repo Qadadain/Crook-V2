@@ -36,8 +36,22 @@
                      alt="">
                 <h5>{{ tutorial.language.name }}</h5>
             </div>
+            {{ form_start(form) }}
+            {{ form_label(form.comment) }}
+            {{ form_widget(form.comment) }}
+            <button>test</button>
+            {{ form_end(form) }}
+            <div>
+                {% for comment in comments %}
+                    <div class="d-flex">
+                        <p>{{ comment.user }}</p>
+                        <p> {{ comment.comment }}</p>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
+
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}

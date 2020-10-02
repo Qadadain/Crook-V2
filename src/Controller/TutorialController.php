@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Tutorial;
+use App\Form\CommentType;
 use App\Form\TutorialType;
 use App\Repository\TutorialRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -46,12 +48,32 @@ class TutorialController extends AbstractController
     /**
      * @Route("/{slug}", name="show")
      * @param Tutorial $tutorial
+     * @param Request $request
+     * @param EntityManagerInterface $em
      * @return Response
      */
-    public function show(Tutorial $tutorial): Response
+    public function show(Tutorial $tutorial, Request $request, EntityManagerInterface $em): Response
     {
+        $comment = new Comment();
+
+        $comments = $tutorial->getComments();
+
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $comment->setUser($this->getUser());
+            $comment->setTutorial($tutorial);
+
+            $em->persist($comment);
+
+            $em->flush();
+
+        }
         return $this->render('tutorial/show.html.twig', [
             'tutorial' => $tutorial,
+            'form'     => $form->createView(),
+            'comments' => $comments
         ]);
     }
 
