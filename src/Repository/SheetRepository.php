@@ -3,7 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Sheet;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,32 +21,10 @@ class SheetRepository extends ServiceEntityRepository
         parent::__construct($registry, Sheet::class);
     }
 
-    // /**
-    //  * @return Sheet[] Returns an array of Sheet objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function userCountSheets(User $user): QueryBuilder
     {
         return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+            ->select('COUNT(s.id) as value')
+            ->where('s.author =' . $user);
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Sheet
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

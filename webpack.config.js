@@ -40,10 +40,8 @@ Encore
     .addPlugin(new CopyPlugin({
         patterns: [
             { from: './assets/images/logo', to: 'images/logo' },
-            { from: './assets/images/language', to: 'images/language' },
         ]
     }))
-
 ;
 
 module.exports = Encore.getWebpackConfig();
