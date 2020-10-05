@@ -19,13 +19,13 @@ class ProfileController extends AbstractController
 {
     /**
      * @Route("/", name="index")
-     * @param EntityManagerInterface $em
      * @return Response
      */
-    public function index(EntityManagerInterface $em)
+    public function index()
     {
 
         return $this->render('profile/index.html.twig', [
+            'user' => $this->getUser(),
             'sheetCount' => count($this->getUser()->getSheets()),
             'tutorialCount' => count($this->getUser()->getTutorials()),
             'favoriteCount' => count($this->getUser()->getFavorite())
