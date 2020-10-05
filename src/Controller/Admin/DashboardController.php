@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Comment;
 use App\Entity\Language;
 use App\Entity\Sheet;
 use App\Entity\Tutorial;
@@ -37,6 +38,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Sheet', 'fas fa-code', Sheet::class);
         yield MenuItem::linkToCrud('Langage', 'far fa-file-code', Language::class);
         yield MenuItem::linkToCrud('Tutoriel', 'far fa-file-alt', Tutorial::class);
+        yield MenuItem::linkToCrud('Commentaire', 'far fa-file-alt', Comment::class);
 
     }
 }
