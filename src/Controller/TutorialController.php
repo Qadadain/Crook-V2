@@ -71,7 +71,7 @@ class TutorialController extends AbstractController
 
         }
         return $this->render('tutorial/show.html.twig', [
-            'tutorial' => $tutorial,
+            'content' => $tutorial,
             'form'     => $form->createView(),
             'comments' => $comments
         ]);

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}
-    Crook - Tutoriel - {{ tutorial.title }}
+    Crook - Tutoriel - {{ content.title }}
 {% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet"
@@ -9,38 +9,13 @@
 {% endblock %}
 {% block body %}
     <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--6-col mdl-cell--2-offset mt-5">
-            <div>
-                <h2 class="m-0">{{ tutorial.title }}</h2>
-                <p class="show-author-date">posté le {{ tutorial.createAt|date("d-m-Y") }}{% if tutorial.updateAt %}, Modifié le {{ tutorial.updateAt|date("d-m-Y") }}</p>
-                {% endif %}
-            </div>
-            <div>
-                <h4>{{ tutorial.description }}</h4>
-            </div>
+        {% include 'Components/_mainContent.html.twig' %}
+        <section class="mdl-cell--6-col mdl-cell--2-offset">
             <hr>
-            <main>
-                {{ tutorial.content | raw }}
-            </main>
-            <hr>
-        {{ include('Components/Tutorial/comment.html.twig') }}
-        </div>
-        <div class="mdl-cell mdl-cell--3-col mdl-cell--1-offset mt-5">
-            <h6>Technologie</h6>
-            <img class="logo-tech" src="{{ asset('/images/language/' ~ tutorial.language.image) }}"
-                 alt="logo">
-            <div class="d-flex align-items-center mt-5">
-                <img class="show-avatar"
-                     src="{{ tutorial.author.avatar ? 'https://github.com/' ~ tutorial.author.avatar ~ '.png?size=300' : asset('/build/images/logo/__Crook_.png') }}"
-                     alt="image de profil">
-                <div>
-                    <h6 class="m-0">auteur</h6>
-                    <p class="m-0">{{ tutorial.author.pseudo }}</p>
-                </div>
-            </div>
-        </div>
+            {% include 'Components/Tutorial/comment.html.twig' %}
+        </section>
+        <span class="mdl-cell--3-col mdl-cell--1-offset"></span>
     </div>
-
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}

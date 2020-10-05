@@ -37,6 +37,7 @@ Encore
     })
 
     .enableSassLoader()
+
     .addPlugin(new CopyPlugin({
         patterns: [
             { from: './assets/images/logo', to: 'images/logo' },

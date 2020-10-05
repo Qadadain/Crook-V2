@@ -364,6 +364,9 @@ h {
   &5 {
     font-family: "Rokkitt", sans-serif;
   }
+  &6 {
+    font-family: "Rokkitt", sans-serif;
+  }
 }
 
 p {
@@ -383,12 +386,6 @@ nav.mdl-navigation > a.mdl-navigation__link {
   font-size: 18px;
 }
 
-body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-
 main {
   flex: 1 0 auto;
 }
@@ -400,4 +397,11 @@ main {
 .hljs {
   overflow-x: auto;
   padding: 1em;
+}
+
+.content-base {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  padding-top: 64px;
 }
