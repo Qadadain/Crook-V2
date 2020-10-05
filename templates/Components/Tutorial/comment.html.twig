@@ -1,12 +1,12 @@
-
+{% if app.user %}
     {{ form_start(form, {'attr': {'class': 'flex-direction-column'}} )}}
-<div class="mdl-textfield mdl-js-textfield">
-            {{ form_label(form.comment) }}
-            {{ form_widget(form.comment) }}
-</div>
-<button>Envoyer</button>
-{{ form_end(form) }}
-
+    <div class="mdl-textfield mdl-js-textfield">
+                {{ form_label(form.comment) }}
+                {{ form_widget(form.comment) }}
+    </div>
+    <button>Envoyer</button>
+    {{ form_end(form) }}
+{% endif %}
 <div>
     {% for comment in comments %}
         <div class="d-flex">

@@ -85,7 +85,7 @@ class SheetController extends AbstractController
     public function show(Sheet $sheet): Response
     {
         return $this->render('sheet/show.html.twig', [
-            'sheet' => $sheet,
+            'content' => $sheet,
         ]);
     }
 }

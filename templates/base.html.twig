@@ -6,17 +6,16 @@
     {{ encore_entry_link_tags('app') }}
     {% block stylesheets %}{% endblock %}
     {% block meta %}{% endblock %}
-    {% include 'Components/_navbar.html.twig' %}
 </head>
 <body>
-<main class="mdl-layout__content">
-    <div class="page-content content-base">
-        {% block body %}
-        {% endblock %}
-    </div>
-</main>
-{{ encore_entry_script_tags('app') }}
-{% block javascripts %}{% endblock %}
-{% include 'Components/_footer.html.twig' %}
+{% include 'Components/_navbar.html.twig' %}
+    <section class="mdl-grid page-content content-base">
+            {% block body %}{% endblock %}
+    </section>
+    <footer class="mdl-mini-footer">
+        {% include 'Components/_footer.html.twig' %}
+    </footer>
+    {{ encore_entry_script_tags('app') }}
+    {% block javascripts %}{% endblock %}
 </body>
 </html>
