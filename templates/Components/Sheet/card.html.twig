@@ -1,7 +1,7 @@
 {% for sheet in sheets %}
         <div class="card mdl-cell mdl-cell--4-col">
             <div class="content">
-                <img class="card-image" src="{{ asset('/build/images/language/') }}{{ sheet.language.image }}" alt="">
+                <img class="card-image" src="{{ asset('/images/language/') }}{{ sheet.language.image }}" alt="">
                 {% if app.user %}
                     <span>
                         <i class="material-icons favorite {{ app.user.favorite.contains(sheet)  ? 'favorite-full' : '' }}"
