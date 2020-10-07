@@ -3,5 +3,10 @@
 {% block title %}$Crook->getLanguage(){% endblock %}
 
 {% block body %}
-{{ include('Components/Language/card.html.twig') }}
+<section>
+    <h1 class="text-align-center">->getTechnologies()</h1>
+    <div class="mdl-grid">
+    {% include 'Components/Language/card.html.twig' %}
+    </div>
+</section>
 {% endblock %}

@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Welcome!{% endblock %}</title>
     {{ encore_entry_link_tags('app') }}
     {% block stylesheets %}{% endblock %}
     {% block meta %}{% endblock %}
 </head>
 <body>
-{% include 'Components/_navbar.html.twig' %}
-    <section class="mdl-grid page-content content-base">
-            {% block body %}{% endblock %}
-    </section>
+    {% include 'Components/_navbar.html.twig' %}
+    {% block body %}{% endblock %}
     <footer class="mdl-mini-footer">
         {% include 'Components/_footer.html.twig' %}
     </footer>

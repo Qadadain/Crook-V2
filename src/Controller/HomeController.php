@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\SheetRepository;
+use App\Repository\TutorialRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,15 +12,18 @@ class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="home")
-     * @param EntityManagerInterface $em
+     * @param SheetRepository $sheetRepository
+     * @param TutorialRepository $tutorialRepository
      * @return Response
      */
-    public function index(EntityManagerInterface $em)
+    public function index(SheetRepository $sheetRepository, TutorialRepository $tutorialRepository)
     {
-        $sheets = $em->getRepository('App:Sheet')->findBy([], ['createAt' => 'ASC' ], 6 );
+        $sheets = $sheetRepository->findBy([], ['createAt' => 'DESC' ], 3 );
+        $tutorials = $tutorialRepository->findBy([], ['createAt' => 'DESC'], 2);
 
         return $this->render('home/index.html.twig', [
-            'sheets' => $sheets
+            'sheets' => $sheets,
+            'tutorials' => $tutorials,
         ]);
     }
 }
