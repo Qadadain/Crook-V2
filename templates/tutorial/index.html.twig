@@ -1,9 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}$crook->getTurorial(){% endblock %}
+{% block title %}->getTutorials(){% endblock %}
 
 {% block body %}
-<div class="mdl-cell mdl-cell--6-col mdl-cell--3-offset">
-    {{ include('Components/Tutorial/card.html.twig') }}
-</div>
+    <section>
+        <h1 class="text-align-center">->getTutorials()</h1>
+        <div class="mdl-grid">
+            {% include 'Components/Tutorial/card.html.twig' %}
+        </div>
+    </section>
 {% endblock %}

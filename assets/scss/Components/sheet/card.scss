@@ -5,10 +5,14 @@ html, body {
 }
 
 .container {
-    height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+}
+.card-container {
+    min-height: 260px;
+}
+.a-cards {
+    text-transform: none;
 }
 
 .card {
@@ -17,11 +21,9 @@ html, body {
     justify-content: center;
     cursor: pointer;
     width: 25em;
-    min-height: 10em;
-    max-width: 80%;
+    margin: 0 auto;
+    min-height: 6em;
     padding: 2em 0;
-    margin-left: 4em;
-    margin-bottom: 3em;
     background: #FFF;
     box-shadow: 0 0 6px 0 rgba(#202024, .12);
     transition: all .35s ease;

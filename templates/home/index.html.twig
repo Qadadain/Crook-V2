@@ -3,7 +3,7 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-    <div class="mdl-grid">
+    <section class="mdl-grid">
         <div class="mdl-cell mdl-cell--12-col home-presentation">
             <h1 class="home-title mdl-layout-title mdc-typography-styles-headline1"> Bienvenue sur <\Cr00k></h1>
             <p class="home-downtitle mobile-downtitle">Générateur d'antisèches pour les&nbsp;<span
@@ -15,14 +15,20 @@
                 <span class="word belize">Developpeuses.</span>
             </p>
         </div>
-    </div>
+    </section>
     <hr>
-    <div class="d-flex justify-content-center">
-        <h4>Sheet ajouté récemment</h4>
-    </div>
-    <div class="container mdl-grid">
-        {% include 'Components/Sheet/card.html.twig' %}
-    </div>
+    <section>
+        <h4 class="text-align-center">->getLastSheets()</h4>
+        <div class="container mdl-grid">
+            {% include 'Components/Sheet/card.html.twig' %}
+        </div>
+    </section>
+    <section>
+        <h4 class="text-align-center">->getLastTutorials()</h4>
+        <div class="mdl-grid">
+            {% include 'Components/Tutorial/card.html.twig' %}
+        </div>
+    </section>
 {% endblock %}
 {% block javascripts %}
     {{ encore_entry_script_tags('titleAnimation') }}

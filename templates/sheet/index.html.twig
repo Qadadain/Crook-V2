@@ -1,9 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}$Crook->getSheet(){% endblock %}
+{% block title %}->getSheets(){% endblock %}
 
 {% block body %}
-<div class="container mdl-grid">
-    {% include 'Components/Sheet/card.html.twig' %}
-</div>
+    <section>
+        <h1 class="text-align-center">->getSheets()</h1>
+        <div class="mdl-grid">
+            {% include 'Components/Sheet/card.html.twig' %}
+        </div>
+    </section>
 {% endblock %}
