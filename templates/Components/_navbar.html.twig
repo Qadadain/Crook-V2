@@ -3,7 +3,9 @@
         <div class="mdl-layout__header-row">
             <!-- Title -->
             <a href="{{ path('home') }}">
-            <span class="mdl-layout-icon"><img class="logo-navbar" src="{{ asset('/build/images/logo/__Crook_.png') }} " alt="logo"></span>
+                <span class="mdl-layout-icon"><img class="logo-navbar"
+                                                   src="{{ asset('/build/images/logo/__Crook_.png') }} "
+                                                   alt="logo"></span>
             </a>
             <!-- Add spacer, to align navigation to the right -->
             <div class="mdl-layout-spacer"></div>
@@ -34,7 +36,8 @@
     <div class="mdl-layout__drawer">
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <div class="demo-drawer-header">
-            <img src="{{ app.user.avatar ? 'https://github.com/' ~ app.user.avatar ~ '.png?size=300' : asset('/build/images/logo/__Crook_.png') }}" alt="avatar" class="avatar" height="80"
+            <img src="{{ app.user.avatar ? 'https://github.com/' ~ app.user.avatar ~ '.png?size=300' : asset('/build/images/logo/__Crook_.png') }}"
+                 alt="avatar" class="avatar" height="80"
                  width="80">
             <h6 class="h6-navbar">Salut, {{ app.user.pseudo }}</h6>
         </div>

@@ -10,11 +10,16 @@
 </head>
 <body>
     {% include 'Components/_navbar.html.twig' %}
+    <div class="mdl-layout__content center-layout">
+        <div class="content-base">
     {% block body %}{% endblock %}
+        </div>
+    </div>
     <footer class="mdl-mini-footer">
         {% include 'Components/_footer.html.twig' %}
     </footer>
     {{ encore_entry_script_tags('app') }}
     {% block javascripts %}{% endblock %}
+</div>
 </body>
 </html>
