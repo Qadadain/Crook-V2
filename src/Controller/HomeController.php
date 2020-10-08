@@ -26,4 +26,12 @@ class HomeController extends AbstractController
             'tutorials' => $tutorials,
         ]);
     }
+
+    /**
+     * @Route("/about", name="_about")
+     */
+    public function about()
+    {
+    return $this->render('home/about.html.twig');
+    }
 }
