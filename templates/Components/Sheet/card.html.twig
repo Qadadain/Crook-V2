@@ -1,6 +1,6 @@
 {% for sheet in sheets %}
         <div class="mdl-cell mdl-cell--4-col card-container">
-            <a class="a-cards" href="{{ path('sheet_show', {'slug': sheet.slug }) }}">
+            <a class="a-cards" href="{{ path('sheet_show', {'slugLanguage': sheet.language.slug, 'slug': sheet.slug }) }}">
                 <div class="card">
                     <div class="content">
                         <img class="card-image" src="{{ asset('/images/language/') }}{{ sheet.language.image }}" alt="">

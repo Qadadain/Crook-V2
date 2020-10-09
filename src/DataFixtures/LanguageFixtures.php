@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Language;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class LanguageFixtures extends Fixture
 {
@@ -53,6 +54,13 @@ class LanguageFixtures extends Fixture
         ],
     ];
 
+    private SluggerInterface $slugger;
+
+    public function __construct(SluggerInterface $slugger)
+    {
+        $this->slugger = $slugger;
+    }
+
     public function load(ObjectManager $manager)
     {
         foreach (self::LANGUAGE as $data) {
@@ -60,7 +68,8 @@ class LanguageFixtures extends Fixture
             $language->setName($data['name'])
                 ->setColor($data['color'])
                 ->setImage($data['image'])
-                ->setIsValid($data['isValid']);
+                ->setIsValid($data['isValid'])
+                ->setSlug($this->slugger->slug($data['name'])->lower());
             $manager->persist($language);
         }
         $manager->flush();

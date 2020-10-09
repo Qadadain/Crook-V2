@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Sheet;
 use App\Form\SheetType;
+use App\Repository\LanguageRepository;
 use App\Repository\SheetRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -78,12 +79,24 @@ class SheetController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}", name="show")
-     * @param Sheet $sheet
+     * @Route("/{slugLanguage}/{slug}", name="show", requirements={"language": "[a-z]+", "slug": "[a-z0-9-]+"})
+     * @param string $slugLanguage
+     * @param string $slug
+     * @param LanguageRepository $languageRepository
+     * @param SheetRepository $sheetRepository
      * @return Response
+     * @throws \Exception
      */
-    public function show(Sheet $sheet): Response
+    public function show(string $slugLanguage, string $slug, LanguageRepository $languageRepository, SheetRepository $sheetRepository): Response
     {
+        $language = $languageRepository->findOneBy(['slug' => $slugLanguage]);
+        if (!$language) {
+            throw new \Exception('Le language est invalide', 404);
+        }
+        $sheet = $sheetRepository->findOneBy(['slug' => $slug, 'language' => $language]);
+        if (!$sheet) {
+            throw new \Exception('Le sheet n\'existe pas', 404);
+        }
         return $this->render('sheet/show.html.twig', [
             'content' => $sheet,
         ]);

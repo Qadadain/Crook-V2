@@ -6,6 +6,7 @@ use App\Repository\LanguageRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -14,6 +15,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @Vich\Uploadable
  * @ORM\Entity(repositoryClass=LanguageRepository::class)
  * @ORM\HasLifecycleCallbacks()
+ * @UniqueEntity("slug")
  */
 class Language
 {
@@ -72,6 +74,11 @@ class Language
      * @var File|null
      */
     private ?File $imageFile = null;
+
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     */
+    private $slug = '';
 
     public function __construct()
     {
@@ -164,6 +171,18 @@ class Language
     public function setUpdateAt(): self
     {
         $this->updateAt = new \DateTime();
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

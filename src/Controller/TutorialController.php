@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Comment;
+use App\Entity\Language;
 use App\Entity\Tutorial;
 use App\Form\CommentType;
 use App\Form\TutorialType;
+use App\Repository\LanguageRepository;
 use App\Repository\TutorialRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -46,14 +48,30 @@ class TutorialController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}", name="show")
-     * @param Tutorial $tutorial
+     * @Route("/{language}/{slug}", name="show", requirements={"language": "[a-z]+", "slug": "[a-z0-9-]+"})
+     * @param string $language
+     * @param string $slug
+     * @param TutorialRepository $tutorialRepository
+     * @param LanguageRepository $languageRepository
      * @param Request $request
      * @param EntityManagerInterface $em
      * @return Response
+     * @throws \Exception
      */
-    public function show(Tutorial $tutorial, Request $request, EntityManagerInterface $em): Response
+    public function show(string $language, string $slug, TutorialRepository $tutorialRepository, LanguageRepository $languageRepository, Request $request, EntityManagerInterface $em): Response
     {
+        $showLanguage = $languageRepository->findOneBy(['slug' => $language]);
+
+        if (!$showLanguage) {
+            throw new \Exception('Le language est invalide', 404);
+        }
+
+        $tutorial = $tutorialRepository->findOneBy(['language' => $showLanguage, 'slug' => $slug]);
+
+        if (!$tutorial) {
+            throw new \Exception('Ce tutorial n\'existe pas', 404);
+        }
+
         $comment = new Comment();
 
         $comments = $tutorial->getComments();
