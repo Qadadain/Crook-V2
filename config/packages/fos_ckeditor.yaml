@@ -7,6 +7,7 @@ fos_ck_editor:
     configs:
         my_config:
             extraPlugins: "codesnippet"
+            toolbar: full
         plugins:
             wordcount:
                 path:     "build/ckeditor/extra-plugins/codesnippet/"

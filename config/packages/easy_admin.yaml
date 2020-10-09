@@ -1,6 +1,20 @@
-#easy_admin:
-#    entities:
-#        # List the entity class name you want to manage
-#        - App\Entity\Product
-#        - App\Entity\Category
-#        - App\Entity\User
+easy_admin:
+  design:
+    form_theme:
+      - '@EasyAdmin/form/bootstrap_4.html.twig'
+      - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
+  entities:
+    Sheet:
+      class: App\Entity\Sheet
+      label: Sheet
+      form:
+        fields:
+          - title
+          - { property: 'content', type: 'fos_ckeditor' }
+    Tutorial:
+      class: App\Entity\Tutorial
+      label: Tutorial
+      form:
+        fields:
+          - title
+          - { property: 'content', type: 'fos_ckeditor' }
