@@ -2,11 +2,23 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Welcome!{% endblock %}</title>
     {{ encore_entry_link_tags('app') }}
     {% block stylesheets %}{% endblock %}
-    {% block meta %}{% endblock %}
+    <meta name="author" content="Quentin Adadain, Thomas Luminic">
+    <meta name="description" content="Crook - Vous aider à devenir de meilleurs programmeurs et programmeuses en vous apportant des antisèches claires et concises.">
+    {% block meta %}
+        <meta property="og:name" content="Crook">
+        <meta property="og:title" content="Crook">
+        <meta property="og:description" content="Crook - Vous aider à devenir de meilleurs programmeurs et programmeuses en vous apportant des antisèches claires et concises.">
+        <meta property="og:image" content="public/build/images/logo/__Crook_.png">
+        <meta property="og:url" content="{{ url('home') }}">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="public/build/images/logo/__Crook_.png">
+        <meta name="twitter:image:alt" content="Logo de Crook">
+    {% endblock %}
 </head>
 <body>
     {% include 'Components/_navbar.html.twig' %}

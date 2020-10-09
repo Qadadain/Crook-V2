@@ -8,7 +8,7 @@
                 {{ tutorial.description }}
             </div>
             <div class="mdl-card__actions mdl-card--border action">
-                <a href="{{ path('tutorial_show', {'slug': tutorial.slug }) }}"
+                <a href="{{ path('tutorial_show', {'language': tutorial.language.slug, 'slug': tutorial.slug }) }}"
                    class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                     Voir le tuto
                 </a>

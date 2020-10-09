@@ -55,7 +55,7 @@ class LanguageController extends AbstractController
         ]);
     }
     /**
-     * @Route("/{id}", name="show")
+     * @Route("/{slug}", name="show", requirements={"slug": "[a-z]+"})
      * @param Language $language
      * @param SheetRepository $sheetRepository
      * @return Response
