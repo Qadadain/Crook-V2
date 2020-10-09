@@ -8,8 +8,10 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class SheetCrudController extends AbstractCrudController
 {
@@ -25,7 +27,7 @@ class SheetCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             TextField::new('title', 'Titre'),
             TextField::new('description', 'Description'),
-            TextEditorField::new('content', 'Contenu'),
+            TextareaField::new('content', 'Contenu')->setFormType(CKEditorType::class),
             AssociationField::new('author', 'auteur'),
             AssociationField::new('language', 'langage'),
             DateField::new('createAt', 'Crée le')->hideOnForm(),
@@ -35,7 +37,7 @@ class SheetCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-
+            ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig')
             ->setSearchFields(['id', 'title', 'description', 'content', 'author.pseudo', 'language.name', 'createAt', 'updateAt']);
     }
 }
