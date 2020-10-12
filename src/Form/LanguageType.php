@@ -15,7 +15,11 @@ class LanguageType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nom de la technologie :'
+                'label' => 'Nom de la technologie :',
+                'attr' => ['class' => 'mdl-textfield__input'],
+                'label_attr' => [
+                    'class' => 'mdl-textfield__label',
+                ],
             ])
             ->add('color', ColorType::class, [
                 'label' => 'Couleur :'

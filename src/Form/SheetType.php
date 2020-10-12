@@ -19,11 +19,20 @@ class SheetType extends AbstractType
         $builder
             ->add('title', TextType::class, [
                 'label' => 'Titre',
+                'attr' => ['class' => 'mdl-textfield__input'],
+                'label_attr' => ['class' => 'mdl-textfield__label'],
             ])
-            ->add('description', TextType::class, [
-                'label' => 'Description'
+
+            ->add('description', TextareaType::class, [
+                'label' => 'Description',
+                'attr' => ['class' => 'mdl-textfield__input'],
+                'label_attr' => [
+                    'class' => 'mdl-textfield__label',
+                    'rows' => 3,
+                    ],
             ])
             ->add('content', CKEditorType::class, [
+                'label' => 'Contenu :',
                 'config' => [
                     'toolbar' => 'standard',
                     'extraPlugins' => 'codesnippet',
@@ -37,6 +46,7 @@ class SheetType extends AbstractType
                 ],
             ])
             ->add('language', EntityType::class, [
+                'label' => 'Technologie :',
                 'class' => Language::class,
                 'choice_label' => 'name',
             ])
