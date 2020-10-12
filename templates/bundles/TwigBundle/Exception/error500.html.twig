@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block title %}Error 500{% endblock %}
+
+{% block body %}
+<div>
+    <div class="d-flex justify-content-center">
+        <h1>Error 500 </h1>
+    </div>
+    <div class="text-center d-flex justify-content-center">
+        <img src="https://zupimages.net/up/20/42/keqx.png" alt="logo" width="500px">
+    </div>
+    <div class="blank">
+        <h4 class="d-flex justify-content-center">
+            C'est pas de ta faute, c'est de la notre !
+        </h4>
+    </div>
+    <div class="ml-5">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+        <a href="{{ path('home') }}">Retour a l'index</a>
+        </button>
+    </div>
+</div>
+{% endblock %}
