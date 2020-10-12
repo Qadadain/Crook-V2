@@ -16,13 +16,27 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => 'Email'
+                'label' => 'Email',
+                'attr' => ['class' => 'mdl-textfield__input'],
+                'label_attr' => [
+                    'class' => 'mdl-textfield__label',
+                ],
             ])
+
             ->add('pseudo', TextType::class, [
-                'label' => 'Pseudo'
+                'label' => 'Pseudo',
+                'attr' => ['class' => 'mdl-textfield__input'],
+                'label_attr' => [
+                    'class' => 'mdl-textfield__label',
+                ],
             ])
+
             ->add('avatar', TextType::class, [
-                'label' => 'Pseudo Github'
+                'label' => 'Pseudo Github',
+                'attr' => ['class' => 'mdl-textfield__input'],
+                'label_attr' => [
+                    'class' => 'mdl-textfield__label',
+                ],
             ])
 
         ;
