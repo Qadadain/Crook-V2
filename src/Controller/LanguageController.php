@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/language", name="language_")
+ * @Route("/technologie", name="language_")
  * Class LanguageController
  * @package App\Controller
  */

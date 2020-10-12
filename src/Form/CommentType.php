@@ -22,7 +22,6 @@ class CommentType extends AbstractType
                     'class' => 'mdl-textfield__input',
                     'rows' => 5,
                     'col' => 33,
-
                 ]
             ])
         ;
