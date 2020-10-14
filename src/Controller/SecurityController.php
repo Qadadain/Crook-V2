@@ -7,11 +7,12 @@ use App\Form\RegistrationFormType;
 use App\Form\ResetPassType;
 use App\Repository\UserRepository;
 use App\Security\UserAuthenticator;
-use Swift_Mailer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mime\Email;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -87,7 +88,7 @@ class SecurityController extends AbstractController
      * @param TokenGeneratorInterface $tokenGenerator
      * @return Response
      */
-    public function oubliPass(Request $request, UserRepository $user, Swift_Mailer $mailer, TokenGeneratorInterface $tokenGenerator
+    public function oubliPass(Request $request, UserRepository $user, MailerInterface $mailer, TokenGeneratorInterface $tokenGenerator
     ): Response
     {
         // On initialise le formulaire
@@ -131,11 +132,12 @@ dump('coucou');
             $url = $this->generateUrl('app_reset_password', ['token' => $token], UrlGeneratorInterface::ABSOLUTE_URL);
 
             // On génère l'e-mail
-            $message = (new \Swift_Message('Mot de passe oublié'))
-                ->setFrom('votre@adresse.fr')
-                ->setTo($user->getEmail())
-                ->setBody(
-                    "Bonjour,<br><br>Une demande de réinitialisation de mot de passe a été effectuée pour le site Nouvelle-Techno.fr. Veuillez cliquer sur le lien suivant : " . $url,
+            $message = (new Email())
+                ->from($this->getParameter('mailer_from'))
+                ->to($user->getEmail())
+                ->subject('Reset password')
+                ->html(
+                    "Bonjour,<br><br>Une demande de réinitialisation de mot de passe a été effectuée pour le site crook.fr. Veuillez cliquer sur le lien suivant : " . $url,
                     'text/html'
                 )
             ;
@@ -159,6 +161,7 @@ dump('coucou');
      * @param Request $request
      * @param string $token
      * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param MailerInterface $mailer
      * @return RedirectResponse|Response
      */
     public function resetPassword(Request $request, string $token, UserPasswordEncoderInterface $passwordEncoder)
