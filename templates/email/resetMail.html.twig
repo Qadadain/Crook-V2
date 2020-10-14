@@ -1,9 +1,12 @@
 {% block body %}
+    <div style="display: flex;">
+        <img src="https://zupimages.net/up/20/42/iuht.png" alt="logo" style="height: 68px" />
+        <h2 style="display: flex;">Crook - Générateur d'antisèche.</h2>
+    </div>
     <div>
-        <p>test</p>
     <p>Bonjour,</p>
-    <p>Une demande de réinitialisation de mot de passe a été effectuée pour le site crook.fr. Veuillez cliquer sur le lien suivant :</p>
-        {{ token }}
+    <p>Une demande de réinitialisation de mot de passe a été effectuée pour le site <a href="https://www.crook.fr">Crook</a>. Veuillez cliquer sur le lien suivant pour le réinitialiser :</p>
+        <a href="{{ token }}"><p>Changer mon Mot de passe !</p></a>
     </div>
 
 {% endblock %}
