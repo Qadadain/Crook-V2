@@ -12,6 +12,8 @@
             <!-- Navigation -->
             <nav class="mdl-navigation">
                 <a class="mdl-navigation__link mdl-typography--text-uppercase"
+                   href="{{ path('_about') }}">À propos</a>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase"
                    href="{{ path('sheet_index') }}">Sheets</a>
                 <a class="mdl-navigation__link mdl-typography--text-uppercase" href="{{ path('tutorial_index') }}">Tutoriels</a>
                 <a class="mdl-navigation__link mdl-typography--text-uppercase"
@@ -38,9 +40,8 @@
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <div class="demo-drawer-header">
             <img src="{{ app.user.avatar ? 'https://github.com/' ~ app.user.avatar ~ '.png?size=300' : asset('/build/images/logo/__Crook_.png') }}"
-                 alt="avatar" class="avatar" height="80"
-                 width="80">
-            <h6 class="h6-navbar">Salut, {{ app.user.pseudo }}</h6>
+                 alt="avatar" class="avatar">
+            <h6 class="h6-navbar text-align-center">Salut, {{ app.user.pseudo }}</h6>
         </div>
         <nav class="mdl-navigation">
             <a class="mdl-navigation__link" href="{{ path('profile_my_sheet') }}">Mes Sheets</a>

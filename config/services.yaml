@@ -1,6 +1,7 @@
 parameters:
     file_avatar: 'images/avatar/'
     file_language: 'images/language/'
+    mailer_from: '%env(resolve:MAILER_FROM_ADDRESS)%'
 
 services:
     _defaults:

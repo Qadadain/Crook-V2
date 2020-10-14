@@ -52,6 +52,14 @@ $tertiary: snow;
   &flex {
     display: flex;
   }
+
+  &grid {
+    display: grid;
+  }
+}
+
+.width-unset{
+  width: unset;
 }
 
 .flex-direction {
@@ -75,6 +83,10 @@ $tertiary: snow;
 
   &-left {
     justify-content: left;
+  }
+
+  &-space-evenly {
+    justify-content: space-evenly;
   }
 }
 
@@ -401,7 +413,7 @@ main {
 
 .content-base {
   display: flex;
-  min-height: 100vh;
+  min-height: 80vh;
   flex-direction: column;
   padding-top: 64px;
 }

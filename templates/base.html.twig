@@ -4,33 +4,46 @@
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}$crook{% endblock %}</title>
     {{ encore_entry_link_tags('app') }}
     {% block stylesheets %}{% endblock %}
     <meta name="author" content="Quentin Adadain, Thomas Luminic">
-    <meta name="description" content="Crook - Vous aider à devenir de meilleurs programmeurs et programmeuses en vous apportant des antisèches claires et concises.">
+    <meta name="description"
+          content="Crook - Vous aider à devenir de meilleurs programmeurs et programmeuses en vous apportant des antisèches claires et concises.">
     {% block meta %}
         <meta property="og:title" content="Crook">
-        <meta property="og:description" content="Crook - Vous aider à devenir de meilleurs programmeurs et programmeuses en vous apportant des antisèches claires et concises.">
+        <meta property="og:description"
+              content="Crook - Vous aider à devenir de meilleurs programmeurs et programmeuses en vous apportant des antisèches claires et concises.">
         <meta property="og:image" content="public/build/images/logo/__Crook_.png">
         <meta property="og:url" content="{{ url('home') }}">
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:image" content="public/build/images/logo/__Crook_.png">
         <meta name="twitter:image:alt" content="Logo de Crook">
     {% endblock %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-176179638-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-176179638-2');
+    </script>
 </head>
 <body>
-    {% include 'Components/_navbar.html.twig' %}
-    <div class="mdl-layout__content center-layout">
-        <div class="content-base">
-    {% block body %}{% endblock %}
-        </div>
+{% include 'Components/_navbar.html.twig' %}
+<div class="mdl-layout__content center-layout">
+    <div class="content-base">
+        {% block body %}{% endblock %}
     </div>
-    <footer class="mdl-mini-footer">
-        {% include 'Components/_footer.html.twig' %}
-    </footer>
-    {{ encore_entry_script_tags('app') }}
-    {% block javascripts %}{% endblock %}
 </div>
+<footer class="mdl-mini-footer">
+    {% include 'Components/_footer.html.twig' %}
+</footer>
+{{ encore_entry_script_tags('app') }}
+{% block javascripts %}{% endblock %}
 </body>
 </html>
