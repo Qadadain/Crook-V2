@@ -4,7 +4,7 @@
 
 The Crooks team is delighted to present you the git directory of the project.
 
-This repository is currently the version used on [Crook](https://crook.fr).
+This repository is currently the version used on [Crook](https://www.crook.fr).
 
 ## The technical environment
 
