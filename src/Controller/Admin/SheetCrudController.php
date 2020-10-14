@@ -27,7 +27,20 @@ class SheetCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             TextField::new('title', 'Titre'),
             TextField::new('description', 'Description'),
-            TextareaField::new('content', 'Contenu')->setFormType(CKEditorType::class),
+            TextareaField::new('content', 'Contenu')->setFormType(CKEditorType::class)->setFormTypeOptions([
+                'label' => 'Contenu :',
+                'config' => [
+                    'toolbar' => 'standard',
+                    'extraPlugins' => 'codesnippet',
+                    'codeSnippet_theme' => 'monokai',
+                ],
+                'plugins' => [
+                    'codesnippet' => [
+                        'path' => '/build/ckeditor/extra-plugins/codesnippet/',
+                        'filename' => 'plugin.js',
+                    ],
+                ],
+            ]),
             AssociationField::new('author', 'auteur'),
             AssociationField::new('language', 'langage'),
             DateField::new('createAt', 'Crée le')->hideOnForm(),
