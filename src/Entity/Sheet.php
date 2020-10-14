@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\HasLifecycleCallbacks()
  * @UniqueEntity("slug")
  */
-class Sheet
+class Sheet implements \JsonSerializable
 {
     /**
      * @ORM\Id
@@ -208,5 +208,14 @@ class Sheet
         }
 
         return $this;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'title' => $this->getTitle(),
+            'slug' => $this->getSlug(),
+            'language' => $this->getLanguage()->getSlug(),
+        ];
     }
 }

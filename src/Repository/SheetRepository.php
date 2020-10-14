@@ -21,10 +21,15 @@ class SheetRepository extends ServiceEntityRepository
         parent::__construct($registry, Sheet::class);
     }
 
-    public function userCountSheets(User $user): QueryBuilder
+    public function searchSheetAndTuto(string $searchField): array
     {
         return $this->createQueryBuilder('s')
-            ->select('COUNT(s.id) as value')
-            ->where('s.author =' . $user);
+            ->where('s.title LIKE :searchField')
+            ->setParameter('searchField', '%' . $searchField . '%')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+            ;
     }
+
 }
