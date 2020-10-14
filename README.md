@@ -6,6 +6,8 @@ The Crooks team is delighted to present you the git directory of the project.
 
 This repository is currently the version used on [Crook](https://www.crook.fr).
 
+The first version of crook was developed during the March 2020 session of the [Wild Code School](https://www.wildcodeschool.com/fr-FR) in Bordeaux and was developed with a "house" framework of the MVC type, you can see the repository [here](https://github.com/Rolls47/Crook.fr).
+
 ## The technical environment
 
 #### Back :
