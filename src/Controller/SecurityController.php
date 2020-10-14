@@ -7,10 +7,12 @@ use App\Form\RegistrationFormType;
 use App\Form\ResetPassType;
 use App\Repository\UserRepository;
 use App\Security\UserAuthenticator;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -84,9 +86,10 @@ class SecurityController extends AbstractController
      * @Route("/oubli-pass", name="app_forgotten_password")
      * @param Request $request
      * @param UserRepository $user
-     * @param Swift_Mailer $mailer
+     * @param MailerInterface $mailer
      * @param TokenGeneratorInterface $tokenGenerator
      * @return Response
+     * @throws TransportExceptionInterface
      */
     public function oubliPass(Request $request, UserRepository $user, MailerInterface $mailer, TokenGeneratorInterface $tokenGenerator
     ): Response
@@ -107,15 +110,13 @@ class SecurityController extends AbstractController
             // Si l'utilisateur n'existe pas
             if ($user === null) {
                 // On envoie une alerte disant que l'adresse e-mail est inconnue
-                $this->addFlash('danger', 'Cette adresse e-mail est inconnue');
-dump('coucou');
+                $this->addFlash('danger', 'Cette adresse e-mail est inconnue !');
                 // On retourne sur la page de connexion
-                //return $this->redirectToRoute('app_login');
+                return $this->redirectToRoute('app_forgotten_password');
             }
-            dump('pascoucou');
 
-            // On génère un token
-            $token = $tokenGenerator->generateToken();
+                // On génère un token
+                $token = $tokenGenerator->generateToken();
 
             // On essaie d'écrire le token en base de données
             try{
@@ -132,15 +133,14 @@ dump('coucou');
             $url = $this->generateUrl('app_reset_password', ['token' => $token], UrlGeneratorInterface::ABSOLUTE_URL);
 
             // On génère l'e-mail
-            $message = (new Email())
+            $message = (new TemplatedEmail())
                 ->from($this->getParameter('mailer_from'))
                 ->to($user->getEmail())
                 ->subject('Reset password')
-                ->html(
-                    "Bonjour,<br><br>Une demande de réinitialisation de mot de passe a été effectuée pour le site crook.fr. Veuillez cliquer sur le lien suivant : " . $url,
-                    'text/html'
-                )
-            ;
+                ->htmlTemplate('email/resetMail.html.twig')
+                ->context([
+                    'token' => $url,
+                ]);
 
             // On envoie l'e-mail
             $mailer->send($message);
@@ -149,11 +149,11 @@ dump('coucou');
             $this->addFlash('message', 'E-mail de réinitialisation du mot de passe envoyé !');
 
             // On redirige vers la page de login
-          //  return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('app_login');
         }
 
         // On envoie le formulaire à la vue
-        return $this->render('registration/mailReset.html.twig',['emailForm' => $form->createView()]);
+        return $this->render('registration/mailReset.html.twig',['form' => $form->createView()]);
     }
 
     /**
@@ -161,7 +161,6 @@ dump('coucou');
      * @param Request $request
      * @param string $token
      * @param UserPasswordEncoderInterface $passwordEncoder
-     * @param MailerInterface $mailer
      * @return RedirectResponse|Response
      */
     public function resetPassword(Request $request, string $token, UserPasswordEncoderInterface $passwordEncoder)
