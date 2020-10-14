@@ -17,6 +17,14 @@
                 <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
                     <i class="material-icons">share</i>
                 </button>
+                {% if app.user is same as(tutorial.author) and app.request.attributes.get('_route') is same as('profile_my_tutorial') %}
+                <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
+                   href="{{ path('tutorial_edit', {'id': tutorial.id}) }}">
+                    <i class="material-icons">
+                        edit
+                    </i>
+                </a>
+                {% endif %}
             </div>
         </div>
     </section>

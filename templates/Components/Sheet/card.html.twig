@@ -12,6 +12,13 @@
                                 </i>
                             </span>
                         {% endif %}
+                        {% if app.user is same as(sheet.author) and app.request.attributes.get('_route') is same as('profile_my_sheet') %}
+                            <span>
+                                <a href="{{ path('sheet_edit', {'id': sheet.id}) }}"><i class="material-icons edit-sheet">
+                                    edit
+                                </i></a>
+                            </span>
+                        {% endif %}
                         <h6>{{ sheet.title }}</h6>
                         <div class="hover_content">
                             <div>
