@@ -4,8 +4,7 @@
 
 {% block body %}
     <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--4-col"></div>
-        <div class="mdl-cell mdl-cell--4-col">
+        <div class="mdl-cell mdl-cell--8-col mdl-cell--2-offset">
             <form method="post">
                 {% if error %}
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -44,7 +43,8 @@
                     </label>
                 </div>
                 #}
-                <p>Vous n'avez pas encore de compte ? <a href="{{ path('app_register') }}">Inscrivez vous !</a></p>
+                <p class="m-0">Vous n'avez pas encore de compte ? <a href="{{ path('app_register') }}">Inscrivez vous !</a></p>
+                <p><a href="{{ path('app_forgotten_password') }}">Mot de passe oublié ?</a></p>
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
                         type="submit">
                     Se connecter

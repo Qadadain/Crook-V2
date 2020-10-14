@@ -3,14 +3,24 @@
 {% block title %}Nouveau mot de passe{% endblock %}
 
 {% block body %}
-    <h1>Réinitialisation du mot de passe</h1>
-    <p>Veuillez entrer votre nouveau mot de passe ci-dessous.</p>
-    <form method="post">
-        <label for="inputPassword">Password</label>
-        <input type="password" name="password" id="inputPassword" placeholder="Mot de passe" required>
-        <input type="hidden" name="token" value="{{ token }}">
-        <button type="submit" id="valider">
-            Valider le mot de passe
-        </button>
-    </form>
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col d-flex flex-direction-column">
+            <div class="mb-5">
+                <h3>New Password()</h3>
+            </div>
+            <form method="post">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <label class="mdl-textfield__label" for="inputPassword">Nouveau mot de passe</label>
+                    <input class="mdl-textfield__input" type="password" name="password" id="inputPassword" required>
+                    <input type="hidden" name="token" value="{{ token }}">
+                </div>
+                <div class="d-flex justify-content-center mt-2">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">
+                        Reset
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
 {% endblock %}

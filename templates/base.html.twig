@@ -35,6 +35,17 @@
 </head>
 <body>
 {% include 'Components/_navbar.html.twig' %}
+{% for message in app.flashes('message') %}
+    <div class="alert alert-success d-flex text-align-center">
+        <p class="message-alert">{{ message }}</p>
+    </div>
+{% endfor %}
+{% for message in app.flashes('danger') %}
+    <div class="alert alert-danger text-align-center">
+        <p class="message-alert">{{ message }}</p>
+    </div>
+{% endfor %}
+
 <div class="mdl-layout__content center-layout">
     <div class="content-base">
         {% block body %}{% endblock %}

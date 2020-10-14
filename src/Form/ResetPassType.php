@@ -13,9 +13,11 @@ class ResetPassType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', EmailType::class)
-            ->add('envoyer', SubmitType::class)
-        ;
+            ->add('email', EmailType::class, [
+                'label' => 'Email',
+                'attr' => ['class' => 'mdl-textfield__input'],
+                'label_attr' => ['class' => 'mdl-textfield__label'],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
