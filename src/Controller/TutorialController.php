@@ -48,6 +48,30 @@ class TutorialController extends AbstractController
     }
 
     /**
+     * @Route("/edit/{id}", name="edit", requirements={"id"="[0-9]+"})
+     * @param Tutorial $tutorial
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+    public function edit(Tutorial $tutorial, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        if ($tutorial->getAuthor() === $this->getUser()) {
+            $form = $this->createForm(TutorialType::class, $tutorial);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $entityManager->flush();
+
+                return $this->redirectToRoute('tutorial_index');
+            }
+            return $this->render('tutorial/edit.html.twig', [
+                'form' => $form->createView(),
+            ]);
+        }
+        throw new Exception('Vous n\'êtes pas l\'auteur de ce sheet ou veuillez vous connecter', 401);
+    }
+
+    /**
      * @Route("/{language}/{slug}", name="show", requirements={"language": "[a-z]+", "slug": "[a-z0-9-]+"})
      * @param string $language
      * @param string $slug
@@ -93,29 +117,5 @@ class TutorialController extends AbstractController
             'form'     => $form->createView(),
             'comments' => $comments
         ]);
-    }
-
-    /**
-     * @Route("/edit/{id}", name="edit", requirements={"id"="[0-9]+"})
-     * @param Tutorial $tutorial
-     * @param Request $request
-     * @param EntityManagerInterface $entityManager
-     * @return Response
-     */
-    public function edit(Tutorial $tutorial, Request $request, EntityManagerInterface $entityManager): Response
-    {
-        if ($tutorial->getAuthor() === $this->getUser()) {
-            $form = $this->createForm(TutorialType::class, $tutorial);
-            $form->handleRequest($request);
-            if ($form->isSubmitted() && $form->isValid()) {
-                $entityManager->flush();
-
-                return $this->redirectToRoute('tutorial_index');
-            }
-            return $this->render('tutorial/edit.html.twig', [
-                'form' => $form->createView(),
-            ]);
-        }
-        throw new Exception('Vous n\'êtes pas l\'auteur de ce sheet ou veuillez vous connecter', 401);
     }
 }
