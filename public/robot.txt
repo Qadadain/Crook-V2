@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /oubli-pass
+Disallow: /reset_pass/
+Sitemap: https://crook.fr/sitemap.xml
