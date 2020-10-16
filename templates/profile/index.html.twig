@@ -8,22 +8,22 @@
                 <h1>Get Profil()</h1>
             </div>
             <div class="d-grid justify-content-right">
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab edit-button">
                     <a href="{{ path('profile_edit') }}"><i class="material-icons">edit</i></a>
                 </button>
             </div>
             <div class="d-flex justify-content-space-evenly">
                 <div>
                     <div class="mt-2">
-                        <h5 class="m-0">Mon Email :</h5>
+                        <h5 class="m-0 h5-color">Mon Email :</h5>
                         <p class="m-0">{{ user.email }}</p>
                     </div>
                     <div class="mt-2">
-                        <h5 class="m-0">Mon Pseudo :</h5>
+                        <h5 class="m-0 h5-color">Mon Pseudo :</h5>
                         <p class="m-0">{{ user.pseudo }}</p>
                     </div>
                     <div class="mt-2">
-                        <h5 class="m-0">Mon Avatar :</h5>
+                        <h5 class="m-0 h5-color">Mon Avatar :</h5>
                         <img src="https://github.com/{{ user.avatar }}.png?size=300" alt="avatar" class="avatar"
                              height="80"
                              width="80">
@@ -31,15 +31,15 @@
                 </div>
                 <div>
                     <div class="mt-2">
-                        <h5 class="m-0">Nombre de sheet :</h5>
+                        <h5 class="m-0 h5-color">Nombre de sheet :</h5>
                         <p class="m-0">{{ sheetCount }}</p>
                     </div>
                     <div class="mt-2">
-                        <h5 class="m-0">Nombre de tuto :</h5>
+                        <h5 class="m-0 h5-color">Nombre de tuto :</h5>
                         <p class="m-0">{{ tutorialCount }}</p>
                     </div>
                     <div class="mt-2">
-                        <h5 class="m-0">Nombre de favoris :</h5>
+                        <h5 class="m-0 h5-color">Nombre de favoris :</h5>
                         <p class="m-0">{{ favoriteCount }}</p>
                     </div>
                 </div>

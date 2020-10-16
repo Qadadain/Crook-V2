@@ -1,0 +1,30 @@
+@media screen and (max-width: 1024px) {
+  .content-base{
+    min-height: 85vh;
+  }
+  .mdl-cell--2-offset{
+    margin-left: 0;
+  }
+  .edit-button{
+    margin-right: 6rem;
+  }
+  .main-content {
+    display: flex;
+    margin: 0;
+    width: auto;
+  }
+  .home-title{
+    text-align: center;
+  }
+  .logo-crook{
+    display: contents;
+  }
+  .ipad-about{
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 1366px) {
+  .content-base{
+    min-height: 90vh;
+  }
+}
