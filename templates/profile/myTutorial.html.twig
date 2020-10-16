@@ -9,7 +9,7 @@
             {% include 'Components/Tutorial/card.html.twig' %}
         {% else %}
             <h2 class="mdl-cell mdl-cell--12-col text-align-center">Vous n'avez pas encore de tutorial</h2>
-            <h4 class="mdl-cell mdl-cell--12-col text-align-center">Rendez vous ici pour créer votre premier tutorial <a href="{{ path('tutorial_new') }}">$tutorial->create()</a></h4>
+            <h4 class="mdl-cell mdl-cell--12-col text-align-center">Rendez vous ici pour créer votre premier tutorial <a class="color-href" href="{{ path('tutorial_new') }}">$tutorial->create()</a></h4>
         {% endif %}
     </div>
 {% endblock %}

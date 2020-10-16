@@ -18,9 +18,6 @@
                 <a class="mdl-navigation__link mdl-typography--text-uppercase" href="{{ path('tutorial_index') }}">Tutoriels</a>
                 <a class="mdl-navigation__link mdl-typography--text-uppercase"
                    href="{{ path('language_index') }}">Technologies</a>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="{{ path('admin') }}">Administration</a>
-                {% endif %}
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
                   mdl-textfield--floating-label mdl-textfield--align-right">
                     <label class="mdl-button mdl-js-button mdl-button--icon"
@@ -49,7 +46,7 @@
             <a class="mdl-navigation__link" href="{{ path('profile_my_favorite') }}">Mes Favoris</a>
             <a class="mdl-navigation__link" href="{{ path('profile_index') }}">Mon Profil</a>
             {% if is_granted('ROLE_ADMIN') %}
-                <a class="mdl-navigation__link" href="{{ path('home') }}">Administration</a>
+                <a class="mdl-navigation__link" href="{{ path('admin') }}">Administration</a>
             {% endif %}
             <a class="mdl-navigation__link mdl-navigation__link--current"
                href="{{ path('app_logout') }}">Déconnexion</a>

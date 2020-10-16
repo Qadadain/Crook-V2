@@ -8,7 +8,7 @@
         {% include 'Components/Sheet/card.html.twig' %}
     {% else %}
         <h2 class="mdl-cell mdl-cell--12-col text-align-center">Vous n'avez pas encore de sheet</h2>
-        <h4 class="mdl-cell mdl-cell--12-col text-align-center">Rendez vous ici pour créer votre premier sheet <a href="{{ path('sheet_new') }}">$sheet->create()</a></h4>
+        <h4 class="mdl-cell mdl-cell--12-col text-align-center">Rendez vous ici pour créer votre premier sheet <a class="color-href" href="{{ path('sheet_new') }}">$sheet->create()</a></h4>
     {% endif %}
 </div>
 {% endblock %}
