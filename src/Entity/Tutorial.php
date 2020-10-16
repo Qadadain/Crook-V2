@@ -25,17 +25,17 @@ class Tutorial
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private ?string $title = '';
+    private ?string $title = null;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private ?string $description = '';
+    private ?string $description = null;
 
     /**
      * @ORM\Column(type="text")
      */
-    private ?string $content = '';
+    private ?string $content = null;
 
     /**
      * @ORM\Column(type="datetime")
@@ -62,12 +62,12 @@ class Tutorial
     /**
      * @ORM\Column(type="string", length=255, unique=true)
      */
-    private $slug = '';
+    private string $slug;
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="tutorial")
      */
-    private $comments;
+    private Collection $comments;
 
     public function __construct()
     {

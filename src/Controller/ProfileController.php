@@ -88,7 +88,7 @@ class ProfileController extends AbstractController
     public function userFavorite():Response
     {
         return $this->render('profile/myFavorite.html.twig', [
-            'sheets' => $this->getUser()->getFavorite(),
+            'sheets' => $this->getUser()->getFavorites(),
         ]);
     }
 
@@ -105,7 +105,7 @@ class ProfileController extends AbstractController
         $sheet = $sheetRepository->find($id);
         $user = $this->getUser();
 
-        if (!$user->getFavorite()->contains($sheet)) {
+        if (!$user->getFavorites()->contains($sheet)) {
             $newFavorite = $user->addFavorite($sheet);
             $entityManager->persist($newFavorite);
             $entityManager->flush();

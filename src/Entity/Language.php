@@ -24,47 +24,47 @@ class Language
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private ?int $id = 0;
+    private ?int $id = null;
 
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private string $name;
+    private ?string $name = null;
 
     /**
      * @ORM\Column(type="string", length=7)
      */
-    private ?string $color = '';
+    private ?string $color = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $image = '';
+    private ?string $image = null;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private ?bool $isValid = false;
+    private bool $isValid = false;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private ?\DateTimeInterface $createAt;
+    private ?\DateTime $createAt = null;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private ?\DateTimeInterface $updateAt;
+    private ?\DateTime $updateAt = null;
 
     /**
      * @ORM\OneToMany(targetEntity=Sheet::class, mappedBy="language")
      */
-    private $sheets;
+    private ?Collection $sheets = null;
 
     /**
      * @ORM\OneToMany(targetEntity=Tutorial::class, mappedBy="language")
      */
-    private $tutorials;
+    private ?Collection $tutorials = null;
 
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
@@ -78,7 +78,7 @@ class Language
     /**
      * @ORM\Column(type="string", length=255, unique=true)
      */
-    private $slug = '';
+    private ?string $slug = null;
 
     public function __construct()
     {
@@ -249,14 +249,12 @@ class Language
         return $this;
     }
 
-    public function setImageFile(?File $imageFile = null)
+    public function setImageFile(?File $imageFile = null): void
     {
         $this->imageFile = $imageFile;
 
         if (null !== $imageFile) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->updateAt = new \DateTimeImmutable();
+            $this->updateAt = new \DateTime();
         }
     }
 

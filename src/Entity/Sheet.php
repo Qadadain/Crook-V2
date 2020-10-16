@@ -64,16 +64,6 @@ class Sheet implements \JsonSerializable
      */
     private $slug;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="favorite")
-     */
-    private $favorites;
-
-    public function __construct()
-    {
-        $this->favorites = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -182,33 +172,6 @@ class Sheet implements \JsonSerializable
         return $this;
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getFavorites(): Collection
-    {
-        return $this->favorites;
-    }
-
-    public function addFavorite(User $favorite): self
-    {
-        if (!$this->favorites->contains($favorite)) {
-            $this->favorites[] = $favorite;
-            $favorite->addFavorite($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFavorite(User $favorite): self
-    {
-        if ($this->favorites->contains($favorite)) {
-            $this->favorites->removeElement($favorite);
-            $favorite->removeFavorite($this);
-        }
-
-        return $this;
-    }
 
     public function jsonSerialize()
     {
@@ -218,4 +181,6 @@ class Sheet implements \JsonSerializable
             'language' => $this->getLanguage()->getSlug(),
         ];
     }
+
+
 }
