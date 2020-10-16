@@ -1,7 +1,7 @@
 {% for sheet in sheets %}
-        <div class="mdl-cell mdl-cell--4-col card-container">
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone card-container mobile-height-unset">
             <a class="a-cards" href="{{ path('sheet_show', {'slugLanguage': sheet.language.slug, 'slug': sheet.slug }) }}">
-                <div class="card">
+                <div class="card mobile-w-100">
                     <div class="content">
                         <img class="card-image" src="{{ asset('/images/language/') }}{{ sheet.language.image }}" alt="">
                         {% if app.user %}
