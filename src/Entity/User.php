@@ -2,21 +2,17 @@
 
 namespace App\Entity;
 
-use _HumbugBox71425477b33d\Nette\Utils\DateTime;
 use App\Repository\UserRepository;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * /**
  * @ORM\Entity
- * @Vich\Uploadable
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\HasLifecycleCallbacks()
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
@@ -28,12 +24,12 @@ class User implements UserInterface
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private ?int $id = 0;
+    private ?int $id = null;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
-    private ?string $email = '';
+    private ?string $email = null;
 
     /**
      * @ORM\Column(type="json")
@@ -44,12 +40,12 @@ class User implements UserInterface
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
-    private string $password;
+    private string $password = '';
 
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private string $pseudo;
+    private string $pseudo = '';
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -59,50 +55,49 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="datetime")
      */
-    private ?DateTimeInterface $createAt;
+    private ?\DateTimeInterface $createAt = null;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private ?DateTimeInterface $updateAt;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Sheet::class, mappedBy="author")
-     */
-    private $sheets;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Tutorial::class, mappedBy="author")
-     */
-    private $tutorials;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Sheet")
-     * @ORM\JoinTable(name="favorites"),
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="sheet_id", referencedColumnName="id")}
-     *      )
-     */
-    private $favorite;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="user")
-     */
-    private $comments;
+    private ?\DateTimeInterface $updateAt = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $reset_token;
+    private ?string $reset_token = null;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Sheet::class, mappedBy="author")
+     */
+    private ?Collection $sheets = null;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Tutorial::class, mappedBy="author")
+     */
+    private ?Collection $tutorials = null;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="user")
+     */
+    private ?Collection $comments = null;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Sheet")
+     * @ORM\JoinTable(name="favorites"), joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}, inverseJoinColumns={@ORM\JoinColumn(name="sheet_id", referencedColumnName="id")}
+     *
+     */
+    private ?Collection $favorites = null;
 
     public function __construct()
     {
         $this->sheets = new ArrayCollection();
         $this->tutorials = new ArrayCollection();
-        $this->favorite = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->favorites = new ArrayCollection();
     }
-    public function  __toString()
+
+    public function __toString(): string
     {
         return $this->pseudo;
     }
@@ -220,7 +215,7 @@ class User implements UserInterface
      */
     public function setCreateAt(): self
     {
-        $this->createAt = new DateTime();
+        $this->createAt = new \DateTime();
 
         return $this;
     }
@@ -241,9 +236,6 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @return Collection|Sheet[]
-     */
     public function getSheets(): Collection
     {
         return $this->sheets;
@@ -304,32 +296,6 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Sheet[]
-     */
-    public function getFavorite(): Collection
-    {
-        return $this->favorite;
-    }
-
-    public function addFavorite(Sheet $favorite): self
-    {
-        if (!$this->favorite->contains($favorite)) {
-            $this->favorite[] = $favorite;
-        }
-
-        return $this;
-    }
-
-    public function removeFavorite(Sheet $favorite): self
-    {
-        if ($this->favorite->contains($favorite)) {
-            $this->favorite->removeElement($favorite);
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|Comment[]
      */
     public function getComments(): Collection
@@ -368,6 +334,32 @@ class User implements UserInterface
     public function setResetToken(?string $reset_token): self
     {
         $this->reset_token = $reset_token;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Sheet[]
+     */
+    public function getFavorites(): Collection
+    {
+        return $this->favorites;
+    }
+
+    public function addFavorite(Sheet $favorite): self
+    {
+        if (!$this->favorites->contains($favorite)) {
+            $this->favorites[] = $favorite;
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(Sheet $favorite): self
+    {
+        if ($this->favorites->contains($favorite)) {
+            $this->favorites->removeElement($favorite);
+        }
 
         return $this;
     }

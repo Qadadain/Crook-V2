@@ -6,9 +6,9 @@
                         <img class="card-image" src="{{ asset('/images/language/') }}{{ sheet.language.image }}" alt="">
                         {% if app.user %}
                             <span>
-                                <i class="material-icons favorite {{ app.user.favorite.contains(sheet)  ? 'favorite-full' : '' }}"
+                                <i class="material-icons favorite {{ app.user.favorites.contains(sheet)  ? 'favorite-full' : '' }}"
                                    data-id="{{ sheet.id }}">
-                                    {{ app.user.favorite.contains(sheet)  ? 'favorite' : 'favorite_border' }}
+                                    {{ app.user.favorites.contains(sheet)  ? 'favorite' : 'favorite_border' }}
                                 </i>
                             </span>
                         {% endif %}
