@@ -26,9 +26,6 @@ class ProfileController extends AbstractController
 
         return $this->render('profile/index.html.twig', [
             'user' => $this->getUser(),
-            'sheetCount' => count($this->getUser()->getSheets()),
-            'tutorialCount' => count($this->getUser()->getTutorials()),
-            'favoriteCount' => count($this->getUser()->getFavorite())
         ]);
     }
 

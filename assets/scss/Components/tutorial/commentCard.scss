@@ -1,0 +1,14 @@
+.comment-cards:nth-child(even) {
+		background-color: $secondary;
+		color: $tertiary;
+		margin-bottom: 5px;
+		margin-left: 15%;
+}
+
+.comment-cards {
+	background-color: $primary;
+	color: $tertiary;
+	margin-bottom: 5px;
+	border-radius: 5px;
+	box-shadow: 2px 2px darkgrey;
+}

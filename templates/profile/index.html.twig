@@ -3,46 +3,42 @@
 {% block title %}Mon Profil{% endblock %}
 {% block body %}
     <div class="mdl-grid m-0">
-        <div class="mdl-cell mdl-cell--8-col d-flex flex-direction-column mdl-cell--2-offset">
-            <div class="d-flex justify-content-center">
-                <h1>Get Profil()</h1>
+        <div class="mdl-cell mdl-cell--12-col">
+            <h1 class="text-align-center">Get Profil()</h1>
+        </div>
+        <div class="mdl-cell mdl-cell--12-col d-flex justify-content-right">
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab m-0">
+                <a href="{{ path('profile_edit') }}"><i class="material-icons">edit</i></a>
+            </button>
+        </div>
+        <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--12-col d-flex align-items-center flex-direction-column">
+            <div class="mt-2 d-flex w-50 mobile-w-100">
+                <h5 class="m-0">Email :</h5>
+                <p class="m-0 ml-1">{{ user.email }}</p>
             </div>
-            <div class="d-grid justify-content-right">
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab edit-button">
-                    <a href="{{ path('profile_edit') }}"><i class="material-icons">edit</i></a>
-                </button>
+            <div class="mt-2 d-flex w-50 mobile-w-100">
+                <h5 class="m-0">Pseudo :</h5>
+                <p class="m-0 ml-1">{{ user.pseudo }}</p>
             </div>
-            <div class="d-flex justify-content-space-evenly">
-                <div>
-                    <div class="mt-2">
-                        <h5 class="m-0 h5-color">Mon Email :</h5>
-                        <p class="m-0">{{ user.email }}</p>
-                    </div>
-                    <div class="mt-2">
-                        <h5 class="m-0 h5-color">Mon Pseudo :</h5>
-                        <p class="m-0">{{ user.pseudo }}</p>
-                    </div>
-                    <div class="mt-2">
-                        <h5 class="m-0 h5-color">Mon Avatar :</h5>
-                        <img src="https://github.com/{{ user.avatar }}.png?size=300" alt="avatar" class="avatar"
-                             height="80"
-                             width="80">
-                    </div>
-                </div>
-                <div>
-                    <div class="mt-2">
-                        <h5 class="m-0 h5-color">Nombre de sheet :</h5>
-                        <p class="m-0">{{ sheetCount }}</p>
-                    </div>
-                    <div class="mt-2">
-                        <h5 class="m-0 h5-color">Nombre de tuto :</h5>
-                        <p class="m-0">{{ tutorialCount }}</p>
-                    </div>
-                    <div class="mt-2">
-                        <h5 class="m-0 h5-color">Nombre de favoris :</h5>
-                        <p class="m-0">{{ favoriteCount }}</p>
-                    </div>
-                </div>
+            <div class="mt-2 d-flex w-50 mobile-w-100">
+                <h5 class="m-0">Avatar :</h5>
+                <img src="{{ user.avatar ? 'https://github.com/' ~ user.avatar ~ '.png?size=300' : asset('/build/images/logo/__Crook_.png') }}" alt="avatar" class="avatar"
+                     height="80"
+                     width="80">
+            </div>
+        </div>
+        <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--12-col d-flex align-items-center flex-direction-column">
+            <div class="mt-2 d-flex w-50 mobile-w-100">
+                <h5 class="m-0">Sheet :</h5>
+                <p class="m-0 ml-1">{{ app.user.sheets.count }}</p>
+            </div>
+            <div class="mt-2 d-flex w-50 mobile-w-100">
+                <h5 class="m-0">Tutorial :</h5>
+                <p class="m-0 ml-1">{{ app.user.tutorials.count }}</p>
+            </div>
+            <div class="mt-2 d-flex w-50 mobile-w-100">
+                <h5 class="m-0">Favoris :</h5>
+                <p class="m-0 ml-1">{{ app.user.favorites.count }}</p>
             </div>
         </div>
     </div>
