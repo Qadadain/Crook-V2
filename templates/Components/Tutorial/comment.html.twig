@@ -1,16 +1,14 @@
 {% if app.user %}
-    {{ form_start(form, {'attr': {'class': 'flex-direction-column'}} ) }}
-    <div class="mdl-textfield mdl-js-textfield">
-        {{ form_label(form.comment) }}
-        {{ form_widget(form.comment) }}
-    </div>
-    <button>Envoyer</button>
-    {{ form_end(form) }}
+    <section>
+        <h3 class="text-align-center">Laissez un commentaire</h3>
+        {% include '/Components/Tutorial/_formComment.html.twig' %}
+    </section>
+    <hr>
 {% endif %}
 <section class="d-flex flex-direction-column align-items-center">
     {% for comment in comments %}
-            <div class="comment-cards d-flex w-50">
-                <div class="d-flex flex-direction-column mdl-col mdl-cell--4-col comment-card-author align-items-center">
+            <div class="comment-cards d-flex w-50 mobile-w-100">
+                <div class="mdl-col mdl-cell--4-col d-flex flex-direction-column comment-card-author align-items-center">
                     <img src="{{ comment.user.avatar ? 'https://github.com/' ~ comment.user.avatar ~ '.png?size=300' : asset('/build/images/logo/__Crook_.png') }}"
                          alt="avatar"
                          width="80"
@@ -22,7 +20,7 @@
                     <div class="d-flex flex-direction-column">
                         <date>{{ comment.createAt|date('Y-m-d') }}</date>
                     </div>
-                    <div class="d-flex flex-direction-column">
+                    <div class="">
                         <p>{{ comment.comment }}</p>
                     </div>
                 </div>

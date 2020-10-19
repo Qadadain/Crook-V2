@@ -1,0 +1,12 @@
+{{ form_start(form, {'attr': {'class': 'mdl-col mdl-cell--12-col d-flex flex-direction-column align-items-center'}} ) }}
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        {{ form_label(form.comment) }}
+        {{ form_widget(form.comment) }}
+    </div>
+    <div>
+        <button type="submit"
+                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
+            Envoyer
+        </button>
+    </div>
+{{ form_end(form) }}
