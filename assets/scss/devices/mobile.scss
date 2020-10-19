@@ -21,4 +21,22 @@
 		max-height: unset;
 		min-height: unset;
 	}
+	.mobile-display-none{
+		display: none;
+	}
+	.home-downtitle{
+		margin-right: 0;
+		white-space: normal;
+	}
+	.mobile-display{
+		display: flex;
+	}
+}
+
+@media all and (min-width: 768px) and (max-width: 1900px){
+	nav.mdl-navigation {
+		a.mdl-navigation__link.mobile-display {
+			display: none;
+		}
+	}
 }
