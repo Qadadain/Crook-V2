@@ -8,7 +8,7 @@
 <section class="d-flex flex-direction-column align-items-center">
     {% for comment in comments %}
             <div class="comment-cards d-flex w-50 mobile-w-100">
-                <div class="mdl-col mdl-cell--4-col d-flex flex-direction-column comment-card-author align-items-center">
+                <div class="mdl-col mdl-cell--4-col d-flex flex-direction-column comment-card-author align-items-center mt-3">
                     <img src="{{ comment.user.avatar ? 'https://github.com/' ~ comment.user.avatar ~ '.png?size=300' : asset('/build/images/logo/__Crook_.png') }}"
                          alt="avatar"
                          width="80"
@@ -17,7 +17,7 @@
                     <p>{{ comment.user.pseudo }}</p>
                 </div>
                 <div class="mdl-col mdl-cell--8-col">
-                    <div class="d-flex flex-direction-column">
+                    <div class="d-flex flex-direction-column mt-3">
                         <date>{{ comment.createAt|date('Y-m-d') }}</date>
                     </div>
                     <div class="">
