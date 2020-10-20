@@ -22,6 +22,14 @@
   .ipad-about{
     justify-content: center;
   }
+  div.mobile-form{
+    margin-left: 0;
+    margin-top: 0;
+  }
+  div.ipad-center{
+    display: flex;
+    justify-content: center;
+  }
 }
 @media screen and (max-width: 1366px) {
   .content-base{
