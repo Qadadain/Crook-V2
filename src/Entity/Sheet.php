@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=SheetRepository::class)
@@ -24,16 +25,21 @@ class Sheet implements \JsonSerializable
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Le champ ne doit pas être vide")
+     * @Assert\Length(max="255", maxMessage="Le titre ne doit pas dépasser {{ limit }}")
      */
     private string $title;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Le champ ne doit pas être vide")
+     * @Assert\Length(max="255", maxMessage="Le description ne doit pas dépasser {{ limit }}")
      */
     private string $description;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Le champ ne doit pas être vide")
      */
     private string $content;
 

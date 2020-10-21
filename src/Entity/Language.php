@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -28,11 +29,13 @@ class Language
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank(message="Vous devez saisir un nom pour la technologie")
+     * @Assert\Length(max="50", maxMessage="Le nom de la technologie ne doit pas dépasser {{ limit }} caractères")
      */
     private ?string $name = null;
 
     /**
-     * @ORM\Column(type="string", length=7)
+     * @ORM\Column(type="string", length=7, nullable=true)
      */
     private ?string $color = null;
 
