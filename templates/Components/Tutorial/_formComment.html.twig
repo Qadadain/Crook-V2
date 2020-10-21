@@ -2,6 +2,7 @@
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         {{ form_label(form.comment) }}
         {{ form_widget(form.comment) }}
+        {{ form_errors(form.comment) }}
     </div>
     <div>
         <button type="submit"

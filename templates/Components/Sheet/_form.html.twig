@@ -4,14 +4,18 @@
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label max-width">
             {{ form_widget(form.title) }}
             {{ form_label(form.title) }}
+            {{ form_errors(form.title) }}
+
         </div>
         <div class="mdl-textfield mdl-js-textfield max-width">
             {{ form_widget(form.description) }}
             {{ form_label(form.description) }}
+            {{ form_errors(form.description) }}
         </div>
         <div>
             {{ form_label(form.content) }}
             {{ form_widget(form.content) }}
+            {{ form_errors(form.content) }}
         </div>
         <div class="d-flex flex-direction-column mt-3">
             {{ form_label(form.language) }}

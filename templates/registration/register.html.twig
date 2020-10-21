@@ -15,18 +15,22 @@
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 {{ form_widget(registrationForm.email) }}
                 {{ form_label(registrationForm.email) }}
+                {{ form_errors(registrationForm.email) }}
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 {{ form_widget(registrationForm.pseudo) }}
                 {{ form_label(registrationForm.pseudo) }}
+                {{ form_errors(registrationForm.pseudo) }}
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 {{ form_widget(registrationForm.plainPassword.first) }}
                 {{ form_label(registrationForm.plainPassword.first) }}
+                {{ form_errors(registrationForm.plainPassword.first) }}
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 {{ form_widget(registrationForm.plainPassword.second) }}
                 {{ form_label(registrationForm.plainPassword.second) }}
+                {{ form_errors(registrationForm.plainPassword.second) }}
             </div>
             <div>
                 <button type="submit"
