@@ -55,7 +55,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(max="255", maxMessage="Le pseudo ne doit pas dépasser {{ limit }}")
+     * @Assert\Length(max="255", maxMessage="L'avatar ne doit pas dépasser {{ limit }}")
      */
     private ?string $avatar = '';
 

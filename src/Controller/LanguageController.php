@@ -48,7 +48,7 @@ class LanguageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($language);
             $entityManager->flush();
-            $this->redirectToRoute('language_index');
+            return $this->redirectToRoute('language_index');
         }
         return $this->render('language/new.html.twig', [
             'form' => $form->createView(),

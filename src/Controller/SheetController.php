@@ -47,7 +47,7 @@ class SheetController extends AbstractController
             $sheet->setAuthor($this->getUser());
             $entityManager->persist($sheet);
             $entityManager->flush();
-            $this->redirectToRoute('sheet_index');
+            return $this->redirectToRoute('sheet_index');
         }
         return $this->render('sheet/new.html.twig', [
             'form' => $form->createView(),

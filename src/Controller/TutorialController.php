@@ -37,11 +37,21 @@ class TutorialController extends AbstractController
 
     /**
      * @Route("/new", name="new")
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    public function new(): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(TutorialType::class);
+        $tutorial = new Tutorial();
+        $form = $this->createForm(TutorialType::class, $tutorial);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $tutorial->setAuthor($this->getUser());
+            $entityManager->persist($tutorial);
+            $entityManager->flush();
+            return $this->redirectToRoute('tutorial_index');
+        }
         return $this->render('tutorial/new.html.twig', [
             'form' => $form->createView(),
         ]);
@@ -103,7 +113,7 @@ class TutorialController extends AbstractController
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $comment->setUser($this->getUser());
             $comment->setTutorial($tutorial);
 
@@ -114,7 +124,7 @@ class TutorialController extends AbstractController
         }
         return $this->render('tutorial/show.html.twig', [
             'content' => $tutorial,
-            'form'     => $form->createView(),
+            'form' => $form->createView(),
             'comments' => $comments
         ]);
     }
