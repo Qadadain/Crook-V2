@@ -3,7 +3,7 @@
           <div>
                 <a class="center" href="{{ path('language_show', {'slug': language.slug }) }}">
                     <div class="img-language">
-                        <img class="mobile-apple" src="{{ asset('/images/language/' ~ language.image) }}"
+                        <img class="mobile-apple" src="{{ language.image ?  asset('/images/language/' ~ language.image)  :  asset('/build/images/logo/__Crook_.png') }}"
                              alt="le logo de {{ language.name }}"/>
                     </div>
                     <div class="text-language">
