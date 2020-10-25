@@ -33,11 +33,15 @@ class RegistrationFormType extends AbstractType
             ->add('plainPassword', RepeatedType::class, array(
                     'type' => PasswordType::class,
                     'first_options' => array('label' => 'Mot de passe :',
-                    'attr' => ['class' => 'mdl-textfield__input'],
+                    'attr' => [
+                        'class' => 'mdl-textfield__input',
+                    ],
                 'label_attr' => ['class' => 'mdl-textfield__label'],
                     ),
                     'second_options' => array('label' => 'Confirmer votre mot de passe :',
-                        'attr' => ['class' => 'mdl-textfield__input'],
+                        'attr' => [
+                            'class' => 'mdl-textfield__input',
+                        ],
                         'label_attr' => ['class' => 'mdl-textfield__label'],
                         ),
                     'mapped' => false,

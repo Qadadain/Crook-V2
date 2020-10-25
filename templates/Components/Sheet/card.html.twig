@@ -19,10 +19,10 @@
                                 </i></a>
                             </span>
                         {% endif %}
-                        <h6>{{ sheet.title | slice(0,30) }} ...</h6>
+                        <h6>{{ sheet.title|length > 30 ? sheet.title|slice(0,30) ~ ' ...' : sheet.title }}</h6>
                         <div class="hover_content">
                             <div>
-                                <p>{{ sheet.description | slice(0,45) }}...</p>
+                                <p>{{ sheet.description|length > 40 ? sheet.description|slice(0,40) ~ ' ...' : sheet.description }}</p>
                             </div>
                             <div class="author">
                                 <div>

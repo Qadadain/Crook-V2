@@ -5,7 +5,8 @@ for (let i = 0; favorites.length > i; i++) {
     favorites[i].addEventListener('click', () => {
         const id = favorites[i].getAttribute('data-id');
         const formData = new FormData();
-        formData.append('id', id)
+        formData.append('id', id);
+
         favorite(formData).then(response => {
             if (!response) {
                favorites[i].textContent = 'favorite';
