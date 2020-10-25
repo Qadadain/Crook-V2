@@ -30,9 +30,9 @@ inputRepeatPassword.addEventListener('change', () => {
         errorsArrayRepeatPassword.push(rulesPassword.noValid);
     }
 
-    if (inputPassword.value !== inputRepeatPassword) {
+  /*  if (inputPassword.value !== inputRepeatPassword) {
         errorsArrayRepeatPassword.push(rulesPassword.samePassword);
-    }
+    }*/
 
     if (errorsArrayRepeatPassword.length > 0) {
         for (let i = 0; i < errorsArrayRepeatPassword.length; i++) {
