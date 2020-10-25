@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\HasLifecycleCallbacks()
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @UniqueEntity(fields={"email"}, message="Un compte existe avec cette email")
  */
 class User implements UserInterface
 {
@@ -49,7 +49,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=50)
      * @Assert\NotBlank(message="Le champ ne doit pas être vide")
-     * @Assert\Length(max="255", maxMessage="Le pseudo ne doit pas dépasser {{ limit }}")
+     * @Assert\Length(max="50", maxMessage="Le pseudo ne doit pas dépasser {{ limit }}")
      */
     private string $pseudo = '';
 

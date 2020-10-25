@@ -2,7 +2,7 @@
     <section class="mdl-cell--6-col mb-5">
         <div class="demo-card-wide mdl-card mdl-shadow--2dp card-tuto">
             <div class="mdl-card__title">
-                <h2 class="mdl-card__title-text">{{ tutorial.title | slice(0,40) }} ...</h2>
+                <h2 class="mdl-card__title-text">{{ tutorial.title|length > 40 ? tutorial.title|slice(0,40) ~ ' ...' : tutorial.title }}</h2>
             </div>
             <div class="mdl-card__supporting-text">
                 {{ tutorial.description }}

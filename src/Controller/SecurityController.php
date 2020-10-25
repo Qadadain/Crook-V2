@@ -9,6 +9,7 @@ use App\Repository\UserRepository;
 use App\Security\UserAuthenticator;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -198,6 +199,28 @@ class SecurityController extends AbstractController
             return $this->render('registration/reset.html.twig', ['token' => $token]);
         }
 
+    }
+
+    /**
+     * @Route ("axios/isEmailUsed", methods={"GET"})
+     * @param Request $request
+     * @param UserRepository $userRepository
+     * @return Response|null
+     */
+    public function isEmailExist(Request $request, UserRepository $userRepository): ?Response
+    {
+            return new JsonResponse($userRepository->getEmailByEmail($request->query->get('email')));
+    }
+
+    /**
+     * @Route ("axios/isPseudoUsed", methods={"GET"})
+     * @param Request $request
+     * @param UserRepository $userRepository
+     * @return Response|null
+     */
+    public function isPseudoExist(Request $request, UserRepository $userRepository): ?Response
+    {
+        return new JsonResponse($userRepository->getPseudoByPseudo($request->query->get('pseudo')));
     }
 
     /**

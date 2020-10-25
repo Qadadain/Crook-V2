@@ -20,6 +20,7 @@ Encore
 
     .addEntry('app', './assets/js/app.js')
     .addEntry('titleAnimation', './assets/js/titleAnimation.js')
+    .addEntry('registerRules', './assets/js/registerRules.js')
 
     .splitEntryChunks()
 
