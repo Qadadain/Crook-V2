@@ -1,4 +1,14 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    {% include 'Components/Sheet/card.html.twig' %}
+    {% if sheets is not empty %}
+    <section>
+        <h1 class="text-align-center">->getSheets()</h1>
+        <div class="mdl-grid">
+            {% include 'Components/Sheet/card.html.twig' %}
+        </div>
+    </section>
+{% else %}
+    <h2 class="mdl-cell mdl-cell--12-col text-align-center">Il n'y a pas encore de sheet pour cette technologie </h2>
+    <h4 class="mdl-cell mdl-cell--12-col text-align-center">Rendez vous ici pour en créer un <a class="color-href" href="{{ path('sheet_new') }}">$sheet->create()</a></h4>
+    {% endif %}
 {% endblock %}
