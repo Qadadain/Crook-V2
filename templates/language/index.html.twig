@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}$Crook->getLanguage(){% endblock %}
+
+{% block body %}
+<section>
+    <h1 class="text-align-center">->getTechnologies()</h1>
+    <div class="mdl-grid justify-content-space-evenly">
+    {% include 'Components/Language/card.html.twig' %}
+    </div>
+</section>
+{% endblock %}

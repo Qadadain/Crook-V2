@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet"
+          href="{{ asset('build/ckeditor/extra-plugins/codesnippet/lib/highlight/styles/railscasts.css') }}"/>
+    {{ parent() }}
+{% endblock %}
+{% block meta %}
+    <meta property="og:title" content="{{ content.title }}">
+    <meta property="og:description" content="{{ content.content }}">
+    <meta property="og:image" content="public/build/images/logo/__Crook_.png">
+    <meta property="og:url" content="{{ url('sheet_show', {'slugLanguage': content.language.slug ,'slug': content.slug }) }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="public/images/language/{{ content.language.image }}">
+    <meta name="twitter:image:alt" content="Logo de la technologie">
+{% endblock %}
+{% block body %}
+    <main class="mdl-grid">
+        {% include 'Components/_mainContent.html.twig' %}
+    </main>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('build/ckeditor/extra-plugins/codesnippet/lib/highlight/highlight.pack.js') }}"></script>
+    <script type="text/javascript">
+        hljs.initHighlightingOnLoad();
+    </script>
+{% endblock %}

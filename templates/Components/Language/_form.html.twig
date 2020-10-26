@@ -1,0 +1,23 @@
+{{ form_start(form) }}
+<div class="mdl-grid row form-language ipad-center">
+        <div class="mdl-cell mdl-cell--6-col mdl-grid d-flex flex-direction-column mdl-cell--3-offset mobile-form">
+            <div>
+            <h1>New Technologie()</h1>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label max-width">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name) }}
+            {{ form_errors(form.name) }}
+            </div>
+            {{ form_label(form.color) }}
+            {{ form_widget(form.color) }}
+        <div class="d-flex justify-content-center">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+                type="submit">
+            Persist
+        </button>
+        </div>
+        </div>
+    </div>
+
+{{ form_end(form) }}

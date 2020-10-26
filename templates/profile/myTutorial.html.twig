@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}$user->getTurorial(){% endblock %}
+
+{% block body %}
+        {% if tutorials is not empty %}
+            <section>
+                <h1 class="text-align-center">->getTutorials()</h1>
+                <div class="mdl-grid justify-content-center">
+                    <h4 class="mdl-cell mdl-cell--12-col text-align-center mb-4">Créer un tutoriel <a class="color-href" href="{{ path('tutorial_new') }}">$tutorial->create()</a></h4>
+                    {% include 'Components/Tutorial/card.html.twig' %}
+                </div>
+            </section>
+        {% else %}
+            <div class="mdl-grid">
+            <h2 class="mdl-cell mdl-cell--12-col text-align-center">Vous n'avez pas encore de tutoriel</h2>
+            <h4 class="mdl-cell mdl-cell--12-col text-align-center">Rendez vous ici pour créer votre premier tutoriel <a class="color-href" href="{{ path('tutorial_new') }}">$tutorial->create()</a></h4>
+            </div>
+        {% endif %}
+{% endblock %}

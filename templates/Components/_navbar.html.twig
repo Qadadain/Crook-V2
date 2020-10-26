@@ -1,0 +1,72 @@
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header mdl-layout__header--scroll">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <a href="{{ path('home') }}">
+                <span class="mdl-layout-icon"><img class="logo-navbar"
+                                                   src="{{ asset('/build/images/logo/__Crook_.png') }} "
+                                                   alt="logo"></span>
+            </a>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation -->
+            <nav class="mdl-navigation mobile-display-none">
+                <a class="mdl-navigation__link mdl-typography--text-uppercase"
+                   href="{{ path('_about') }}">À propos</a>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase"
+                   href="{{ path('sheet_index') }}">Sheets</a>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="{{ path('tutorial_index') }}">Tutoriels</a>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase"
+                   href="{{ path('language_index') }}">Technologies</a>
+            </nav>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                  mdl-textfield--floating-label mdl-textfield--align-right">
+                <label class="mdl-button mdl-js-button mdl-button--icon"
+                       for="fixed-header-drawer-exp">
+                    <i class="material-icons">search</i>
+                </label>
+                <div class="mdl-textfield__expandable-holder">
+                    <input class="mdl-textfield__input" type="text" name="searchBar" autocomplete="off"
+                           id="fixed-header-drawer-exp">
+                    <span id="searchBarResult"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="mdl-layout__drawer">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <div class="demo-drawer-header">
+            <img src="{{ app.user.avatar ? 'https://github.com/' ~ app.user.avatar ~ '.png?size=300' : asset('/build/images/logo/__Crook_.png') }}"
+                 alt="avatar" class="avatar">
+            <h6 class="h6-navbar text-align-center">Salut, {{ app.user.pseudo }}</h6>
+        </div>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="{{ path('profile_index') }}">Mon Profil</a>
+            <a class="mdl-navigation__link" href="{{ path('profile_my_sheet') }}">Mes Sheets</a>
+            <a class="mdl-navigation__link" href="{{ path('profile_my_tutorial') }}">Mes Tutoriels</a>
+            <a class="mdl-navigation__link" href="{{ path('profile_my_favorite') }}">Mes Favoris</a>
+            <a class="mdl-navigation__link mobile-display" href="{{ path('sheet_index') }}">Sheets</a>
+            <a class="mdl-navigation__link mobile-display" href="{{ path('tutorial_index') }}">Tutoriels</a>
+            <a class="mdl-navigation__link mobile-display" href="{{ path('language_index') }}">Technologies</a>
+            <a class="mdl-navigation__link mobile-display" href="{{ path('_about') }}">À propos</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a class="mdl-navigation__link" href="{{ path('admin') }}">Administration</a>
+            {% endif %}
+            <a class="mdl-navigation__link mdl-navigation__link--current"
+               href="{{ path('app_logout') }}">Déconnexion</a>
+        </nav>
+    </div>
+    {% else %}
+    <div class="demo-drawer-header">
+        {# ou alors mettre un logo ou quelque choses d'autre #}
+        <h6 class="h6-navbar">Bonjour, pour commencer à utiliser Crook connecte toi !</h6>
+    </div>
+    <nav class="mdl-navigation">
+        <a class="mdl-navigation__link mobile-display" href="{{ path('sheet_index') }}">Sheets</a>
+        <a class="mdl-navigation__link mobile-display" href="{{ path('tutorial_index') }}">Tutoriels</a>
+        <a class="mdl-navigation__link mobile-display" href="{{ path('language_index') }}">Technologies</a>
+        <a class="mdl-navigation__link mobile-display" href="{{ path('_about') }}">À propos</a>
+        <a class="mdl-navigation__link" href="{{ path('app_login') }}">Connexion</a>
+    </nav>
+</div>
+        {% endif %}

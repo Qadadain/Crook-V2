@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    <div class="mdl-grid m-0">
+        <div class="mdl-cell mdl-cell--4-col d-flex justify-content-center"></div>
+        <div class="mdl-cell mdl-cell--12-col">
+            {% for flashError in app.flashes('verify_email_error') %}
+                <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+            {% endfor %}
+
+            <h1 class="text-align-center">Inscription</h1>
+            {{ form_start(registrationForm, {'attr': {'class': 'd-flex flex-direction-column align-items-center w-100'}}) }}
+
+            <div id="errorEmail"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form_widget(registrationForm.email) }}
+                {{ form_label(registrationForm.email) }}
+                {{ form_errors(registrationForm.email) }}
+            </div>
+
+            <div id="errorPseudo"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form_widget(registrationForm.pseudo) }}
+                {{ form_label(registrationForm.pseudo) }}
+                {{ form_errors(registrationForm.pseudo) }}
+            </div>
+
+            <div id="errorPassword"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form_widget(registrationForm.plainPassword.first) }}
+                {{ form_label(registrationForm.plainPassword.first) }}
+                {{ form_errors(registrationForm.plainPassword.first) }}
+            </div>
+
+            <div id="errorRepeatPassword"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form_widget(registrationForm.plainPassword.second) }}
+                {{ form_label(registrationForm.plainPassword.second) }}
+                {{ form_errors(registrationForm.plainPassword.second) }}
+            </div>
+            <div>
+                <button type="submit"
+                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
+                    S'inscrire !
+                </button>
+            </div>
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('registerRules') }}
+{% endblock %}

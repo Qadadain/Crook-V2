@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}$user->getFavorite(){% endblock %}
+
+{% block body %}
+    <div class="container mdl-grid">
+        {% if sheets is not empty %}
+            {% include 'Components/Sheet/card.html.twig' %}
+        {% else %}
+            <h2 class="mdl-cell mdl-cell--12-col text-align-center">Vous n'avez pas encore de Favoris</h2>
+            <h4 class="mdl-cell mdl-cell--12-col text-align-center">N'hésitez pas à cliquer sur le coeur !</h4>
+        {% endif %}
+    </div>
+{% endblock %}

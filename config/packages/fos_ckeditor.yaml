@@ -1,0 +1,18 @@
+twig:
+    form_themes:
+        - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
+fos_ck_editor:
+    base_path: "build/ckeditor"
+    js_path:   "build/ckeditor/ckeditor.js"
+    configs:
+        my_config:
+            extraPlugins: "codesnippet"
+            toolbar: full
+        plugins:
+            wordcount:
+                path:     "build/ckeditor/extra-plugins/codesnippet/"
+                filename: "plugin.js"
+    toolbars:
+        items:
+            insert: ["Source"]
+            standard.insert: ['CodeSnippet']

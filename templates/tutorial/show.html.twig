@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Crook - Tutoriel - {{ content.title }}
+{% endblock %}
+
+{% block meta %}
+    <meta property="og:title" content="{{ content.title }}">
+    <meta property="og:description" content="{{ content.content }}">
+    <meta property="og:image" content="public/build/images/logo/__Crook_.png">
+    <meta property="og:url" content="{{ url('tutorial_show', {'language': content.language.slug, 'slug': content.slug }) }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="public/build/images/logo/__Crook_.png">
+    <meta name="twitter:image:alt" content="Logo de Crook">
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet"
+          href="{{ asset('build/ckeditor/extra-plugins/codesnippet/lib/highlight/styles/railscasts.css') }}"/>
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div class="mdl-grid">
+        {% include 'Components/_mainContent.html.twig' %}
+        <section class="mdl-cell--12-col">
+            <hr>
+            {% include 'Components/Tutorial/comment.html.twig' %}
+        </section>
+        <span class="mdl-cell--3-col mdl-cell--1-offset"></span>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('build/ckeditor/extra-plugins/codesnippet/lib/highlight/highlight.pack.js') }}"></script>
+    <script type="text/javascript">
+        hljs.initHighlightingOnLoad();
+    </script>
+{% endblock %}

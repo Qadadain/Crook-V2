@@ -1,0 +1,37 @@
+{% for sheet in sheets %}
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone card-container mobile-height-unset">
+            <a class="a-cards" href="{{ path('sheet_show', {'slugLanguage': sheet.language.slug, 'slug': sheet.slug }) }}">
+                <div class="card mobile-w-100">
+                    <div class="content">
+                        <img class="card-image" src="{{ asset('/images/language/') }}{{ sheet.language.image }}" alt="">
+                        {% if app.user %}
+                            <span>
+                                <i class="material-icons favorite {{ app.user.favorites.contains(sheet)  ? 'favorite-full' : '' }}"
+                                   data-id="{{ sheet.id }}">
+                                    {{ app.user.favorites.contains(sheet)  ? 'favorite' : 'favorite_border' }}
+                                </i>
+                            </span>
+                        {% endif %}
+                        {% if app.user is same as(sheet.author) and app.request.attributes.get('_route') is same as('profile_my_sheet') %}
+                            <span>
+                                <a href="{{ path('sheet_edit', {'id': sheet.id}) }}"><i class="material-icons edit-sheet">
+                                    edit
+                                </i></a>
+                            </span>
+                        {% endif %}
+                        <h6>{{ sheet.title|length > 25 ? sheet.title|slice(0,25) ~ ' ...' : sheet.title }}</h6>
+                        <div class="hover_content">
+                            <div>
+                                <p>{{ sheet.description|length > 40 ? sheet.description|slice(0,40) ~ ' ...' : sheet.description }}</p>
+                            </div>
+                            <div class="author">
+                                <div>
+                                    <p>par {{ sheet.author.pseudo }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+{% endfor %}

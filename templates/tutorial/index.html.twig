@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}->getTutorials(){% endblock %}
+
+{% block meta %}
+    <meta property="og:title" content="->getTutorials()">
+    <meta property="og:description" content="Retrouvez tous nos tutoriaux.">
+    <meta property="og:image" content="public/build/images/logo/__Crook_.png">
+    <meta property="og:url" content="{{ url('tutorial_index') }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="public/build/images/logo/__Crook_.png">
+    <meta name="twitter:image:alt" content="Logo de Crook">
+{% endblock %}
+
+{% block body %}
+    <section>
+        <h1 class="text-align-center">->getTutorials()</h1>
+        <div class="mdl-grid justify-content-center">
+            {% include 'Components/Tutorial/card.html.twig' %}
+        </div>
+    </section>
+{% endblock %}

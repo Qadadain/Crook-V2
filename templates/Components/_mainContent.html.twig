@@ -1,0 +1,30 @@
+<section class="mdl-cell mdl-cell--6-col mdl-cell--2-offset mdl-cell--12-col-phone mdl-cell--12-col-tablet mt-5">
+    <div>
+        <h2 class="m-0">{{ content.title }}</h2>
+        <p class="show-author-date">posté le <time datetime="{{ content.createAt|date("Y-m-d\\TH:i:s") }}">{{ content.createAt|date("d-m-Y") }}</time>{% if content.updateAt %}, Modifié
+            le <time datetime="{{ content.updateAt|date("Y-m-d\\TH:i:s") }}">{{ content.updateAt|date("d-m-Y") }}</time></p>
+        {% endif %}
+    </div>
+    <div>
+        <h4>{{ content.description }}</h4>
+    </div>
+    <hr>
+    <article>
+        {{ content.content | raw }}
+    </article>
+</section>
+<section class="mdl-cell mdl-cell--3-col mdl-cell--1-offset mdl-cell--12-col-phone mdl-cell--12-col-tablet mt-5">
+    <h6 class="text-align-left">À propos</h6>
+    <div class="d-flex align-items-center">
+        <img class="logo-tech" src="{{ asset('/images/language/' ~ content.language.image) }}"
+             alt="logo">
+    </div>
+    <div class="d-flex align-items-center mt-2">
+        <img class="show-avatar"
+             src="{{ content.author.avatar ? 'https://github.com/' ~ content.author.avatar ~ '.png?size=300' : asset('/build/images/logo/__Crook_.png') }}"
+             alt="image de profil">
+        <div>
+            <p class="m-0">{{ content.author.pseudo }}</p>
+        </div>
+    </div>
+</section>

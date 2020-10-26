@@ -1,0 +1,15 @@
+    {% for language in languages %}
+        <div class="mdl-cell margin-card mdl-cell--3-col">
+          <div>
+                <a class="center" href="{{ path('language_show', {'slug': language.slug }) }}">
+                    <div class="img-language">
+                        <img class="mobile-apple" src="{{ language.image ?  asset('/images/language/' ~ language.image)  :  asset('/build/images/logo/__Crook_.png') }}"
+                             alt="le logo de {{ language.name }}"/>
+                    </div>
+                    <div class="text-language">
+                        <p class="figure-caption text-center"> Les sheets {{ language.name }}.</p>
+                    </div>
+                </a>
+          </div>
+        </div>
+    {% endfor %}

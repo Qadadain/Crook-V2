@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}$user->getSheet(){% endblock %}
+
+{% block body %}
+<div class="container mdl-grid">
+    {% if sheets is not empty %}
+    <section>
+        <h1 class="text-align-center">->getSheet()</h1>
+        <div class="mdl-grid justify-content-center">
+            <h4 class="mdl-cell mdl-cell--12-col text-align-center mb-4">Créer un sheet <a class="color-href" href="{{ path('sheet_new') }}">$sheet->create()</a></h4>
+            {% include 'Components/Sheet/card.html.twig' %}
+        </div>
+    </section>
+    {% else %}
+        <h2 class="mdl-cell mdl-cell--12-col text-align-center">Vous n'avez pas encore de sheet</h2>
+        <h4 class="mdl-cell mdl-cell--12-col text-align-center">Rendez vous ici pour créer votre premier sheet <a class="color-href" href="{{ path('sheet_new') }}">$sheet->create()</a></h4>
+    {% endif %}
+</div>
+{% endblock %}
