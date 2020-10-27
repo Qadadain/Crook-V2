@@ -2,4 +2,5 @@ User-agent: *
 Disallow: /admin/
 Disallow: /oubli-pass
 Disallow: /reset_pass/
+Disallow: /language/sheets/6
 Sitemap: https://crook.fr/sitemap.xml
