@@ -30,6 +30,11 @@
     display: flex;
     justify-content: center;
   }
+  .mdl-layout__container.has-scrolling-header .mdl-layout__content{
+    overflow: visible;
+    overflow-y: unset;
+    overflow-x: unset;
+  }
 }
 @media screen and (max-width: 1366px) {
   .content-base{
