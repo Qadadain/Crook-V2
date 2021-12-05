@@ -56,6 +56,8 @@ RUN composer install
 
 RUN yarn install
 
+RUN npm rebuild node-sass
+
 RUN yarn encore dev
 
 WORKDIR /
