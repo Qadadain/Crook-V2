@@ -1,0 +1,36 @@
+FROM composer:1.9.3 AS composer
+
+###################
+
+FROM php:7.4.4-apache-buster
+
+COPY --from=composer /usr/bin/composer /usr/bin/composer
+
+ENV PROJECT_DIR /var/www/project
+ENV APP_ENV dev
+
+WORKDIR $PROJECT_DIR
+
+RUN apt update && apt install --no-install-recommends --assume-yes xfonts-75dpi fontconfig libjpeg62-turbo-dev libx11-6 libxcb1 libxext6 libzip-dev libxrender1 xfonts-base libpng-dev libjpeg-dev wget \
+ && wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.stretch_arm64.deb \
+ && dpkg --install wkhtmltox_0.12.6-1.stretch_arm64.deb
+
+RUN apt-get -y update \
+&& apt-get install -y libicu-dev \
+&& docker-php-ext-configure intl \
+&& docker-php-ext-install intl
+
+RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini" \
+ && sed -i 's|variables_order = "GPCS"|variables_order = "EGPCS"|' $PHP_INI_DIR/php.ini \
+ && a2enmod rewrite \
+ && sed -i "s|DocumentRoot /var/www/html|DocumentRoot ${PROJECT_DIR}/public|" /etc/apache2/sites-available/000-default.conf \
+ && echo "ServerName localhost" | tee /etc/apache2/conf-available/servername.conf && a2enconf servername \
+ && docker-php-ext-configure zip \
+ && docker-php-ext-install iconv pdo_mysql zip \
+ && docker-php-source extract \
+ && pecl install xdebug \
+ && docker-php-ext-enable xdebug \
+ && docker-php-source delete \
+ && sed -i "s/\;date\.timezone\ =/date\.timezone\ =\ Europe\/Paris/g" /usr/local/etc/php/php.ini \
+ && rm -rf /tmp/* \
+ && apt-get clean && rm -rf /var/lib/apt/lists/*

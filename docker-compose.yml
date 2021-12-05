@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile.dev
+    volumes:
+      - .:/var/www/project:delegated
+    ports:
+      - "8749:80"
+
+  db:
+    image: mysql/mysql-server:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'rootroot'
+      MYSQL_PASSWORD: 'root'
+      MYSQL_ROOT_HOST: '%'
+
+  node:
+    image: node:latest
+    command: sh -c "yarn install && yarn encore dev --watch"
+    volumes:
+      - .:/app:cached
+    working_dir: /app
+
+  phpmyadmin:
+    image: phpmyadmin:5.1
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "8739:80"
+
