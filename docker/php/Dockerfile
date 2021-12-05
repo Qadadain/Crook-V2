@@ -27,7 +27,6 @@ RUN apt-get update \
 
 RUN apt-get update \
     && apt-get install -y wget gpg apt-utils \
-
     # composer
     && curl -sS https://getcomposer.org/installer -o composer-setup.php \
     && HASH="$(wget -q -O - https://composer.github.io/installer.sig)" \

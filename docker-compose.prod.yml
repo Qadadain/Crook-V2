@@ -18,7 +18,7 @@ services:
       - ./traefik:/var/www/html/traefik
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.my-app.rule=Host(`prod.emptydev.fr`)'
+      - 'traefik.http.routers.my-app.rule=Host(`crook.fr`)'
       - 'traefik.http.routers.my-app.tls=true'
       - 'traefik.http.routers.my-app.tls.certresolver=lets-encrypt'
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
