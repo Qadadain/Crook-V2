@@ -48,10 +48,6 @@ COPY ./ /var/www/html/
 
 WORKDIR /var/www/html
 
-RUN cp .env .env.local && ls -a && cat .env.local
-
-RUN echo 'DATABASE_URL="mysql://root:rootroot@db:3306/crook?serverVersion=5.7"' >> .env.local && cat .env.local
-
 RUN composer install
 
 RUN yarn install
