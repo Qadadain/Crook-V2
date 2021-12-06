@@ -64,6 +64,7 @@ COPY ./docker/local.ini /usr/local/etc/php/conf.d/local.ini
 COPY ./docker/conf.d/nginx.conf /etc/nginx/nginx.conf
 
 RUN chmod 600 /var/www/html/traefik/acme.json
+RUN chmod -R 777 /var/www/html/public/images/language
 
 EXPOSE 8080
 RUN nginx -t

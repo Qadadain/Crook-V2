@@ -23,6 +23,9 @@ services:
       - 'traefik.http.routers.my-app.tls.certresolver=lets-encrypt'
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
       - "--certificatesresolvers.myhttpchallenge.acme.httpchallenge.entrypoint=web"
+      - 'traefik.frontend.rule=Host:crook.fr,www.crook.fr'
+      - 'traefik.frontend.redirect.regex=^https?://crook.fr/(.*)'
+      - 'traefik.frontend.redirect.replacement=https://www.crook.fr/$${1}'
     ports:
       - "85:8080"
 
