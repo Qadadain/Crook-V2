@@ -28,6 +28,23 @@ The first version of crook was developed during the March 2020 session of the [W
 - Material Design Icons
 - CKeditor 5
 - highlight.js
+## Start Dev
+>	 git clone
+> 
+> cp .env .env.local
+
+Composer + yarn 
+
+>composer install
+> 
+>yarn install
+> 
+> yarn encore dev
+
+Docker
+
+>docker-compose up -d --build
+
 
 ## The crookers
 - [Quentin Adadain](https://www.linkedin.com/in/quentinadadain/)
