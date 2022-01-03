@@ -34,7 +34,7 @@ up: ## Run containers
 	docker-compose up -d
 
 fixtures: ## Run fixtures
-	docker-compose exec web bash -c "php bin/console doctrine:fixtures:load --no-interaction"
+	docker-compose exec web bash -c "php /var/www/html/bin/console doctrine:fixtures:load --no-interaction"
 
 bdd: ## Reset BDD
 	docker-compose exec web bash -c "php bin/console doctrine:database:drop --force --no-interaction"

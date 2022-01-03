@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: ./docker/php/Dockerfile.dev
     volumes:
-      - .:/var/www/project:delegated
+      - .:/var/www/html:delegated
     ports:
       - "8749:80"
 
