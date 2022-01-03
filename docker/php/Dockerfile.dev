@@ -26,22 +26,9 @@ RUN apt-get update \
 	&& docker-php-ext-install zip \
 	&& apt-get autoclean -y \
 	&& rm -rf /var/lib/apt/lists/* \
-	&& rm -rf /tmp/pear/
-
-RUN apt-get update \
-    && apt-get install -y wget gpg apt-utils \
-    # composer
-    && curl -sS https://getcomposer.org/installer -o composer-setup.php \
-    && HASH="$(wget -q -O - https://composer.github.io/installer.sig)" \
-    && php -r "if (hash_file('SHA384', 'composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" \
-    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
-    # Yarn
-    && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
-    && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
+	&& rm -rf /tmp/pear/ \
     && apt-get update \
-    && apt-get install yarn \
-    && apt-get install --no-install-recommends yarn
-
+    && apt-get install -y wget gpg apt-utils
 
 RUN apt-get install -y default-mysql-client
 
@@ -52,12 +39,6 @@ WORKDIR /var/www/html
 RUN cp .env .env.local && ls -a && cat .env.local
 
 RUN echo 'DATABASE_URL="mysql://root:rootroot@db:3306/crook?serverVersion=5.7"' >> .env.local && cat .env.local
-
-RUN composer install
-
-RUN yarn install
-
-RUN yarn encore dev
 
 WORKDIR /
 
