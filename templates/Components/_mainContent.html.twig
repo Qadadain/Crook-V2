@@ -1,6 +1,6 @@
 <section class="mdl-cell mdl-cell--6-col mdl-cell--2-offset mdl-cell--12-col-phone mdl-cell--12-col-tablet mt-5">
     <div>
-        <h2 class="m-0">{{ content.title }}</h2>
+        <h1 class="m-0">{{ content.title }}</h1>
         <p class="show-author-date">posté le <time datetime="{{ content.createAt|date("Y-m-d\\TH:i:s") }}">{{ content.createAt|date("d-m-Y") }}</time>{% if content.updateAt %}, Modifié
             le <time datetime="{{ content.updateAt|date("Y-m-d\\TH:i:s") }}">{{ content.updateAt|date("d-m-Y") }}</time></p>
         {% endif %}
