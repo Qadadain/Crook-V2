@@ -1,7 +1,15 @@
 version: '3.8'
 services:
   traefik:
-    image: traefik:2.1
+    image: traefik:2.6
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+      - "--certificatesresolvers.myresolver.acme.email=quentin.adadain@gmail.com"
+      - "--certificatesresolvers.myresolver.acme.storage=/etc/traefik/acme.json"
     restart: always
     ports:
       - '80:85'
@@ -20,6 +28,7 @@ services:
       - 'traefik.enable=true'
       - 'traefik.http.routers.my-app.rule=Host(`crook.fr`, `www.crook.fr`)'
       - 'traefik.http.routers.my-app.tls=true'
+      - "traefik.http.routers.my-app.entrypoints=websecure"
       - 'traefik.http.routers.my-app.tls.certresolver=lets-encrypt'
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
       - "--certificatesresolvers.myhttpchallenge.acme.httpchallenge.entrypoint=web"
