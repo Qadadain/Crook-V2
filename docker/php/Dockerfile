@@ -10,6 +10,9 @@ RUN apt-get update \
 	&& apt-get install -y --no-install-recommends build-essential  openssl nginx libfreetype6-dev libjpeg-dev libpng-dev libwebp-dev zlib1g-dev libzip-dev gcc g++ make vim unzip curl git jpegoptim optipng pngquant gifsicle locales libonig-dev nodejs npm \
 	&& docker-php-ext-configure gd  \
 	&& docker-php-ext-install gd \
+    && apt-get install -y libicu-dev \
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install intl \
 	# gmp
 	&& apt-get install -y --no-install-recommends libgmp-dev \
 	&& docker-php-ext-install gmp \
