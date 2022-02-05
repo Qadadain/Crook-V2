@@ -3,21 +3,31 @@ services:
   traefik:
     image: traefik:2.6
     command:
-      - "--api.insecure=true"
+      # Globals
+      - "--global.checkNewVersion=true"
+      - "--global.sendAnonymousUsage=true"
+      # Http & Https
+      - "--entryPoints.web.address=:80"
+      - "--entryPoints.websecure.address=:443"
+      # Permits the update by user's services
+      - "--api=true"
+      # Docker Configuration
       - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80"
-      - "--entrypoints.websecure.address=:443"
-      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
-      - "--certificatesresolvers.myresolver.acme.email=quentin.adadain@gmail.com"
-      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
-      - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
+      - "--providers.docker.endpoint=unix:///var/run/docker.sock"
+      - "--providers.docker.exposedByDefault=false"
+      - "--providers.docker.network=proxy"
+      - "--providers.docker.swarmMode=false"
+      # Certificate Resolver
+      - "--certificatesResolvers.lets-encrypt.acme.email=quentin.adadain@gmail.com"
+      - "--certificatesresolvers.lets-encrypt.acme.storage=/etc/traefik/acme.json"
+      - "--certificatesresolvers.lets-encrypt.acme.httpchallenge.entrypoint=web"
+      - "--serverstransport.insecureskipverify=true"
     restart: always
     ports:
-      - '80:85'
+      - '80:80'
       - '443:443'
     volumes:
-      - "./traefik:/letsencrypt"
+      - "./traefik:/etc/traefik"
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
   web:
@@ -27,13 +37,20 @@ services:
     volumes:
       - ./traefik:/var/www/html/traefik
     labels:
-      - 'traefik.enable=true'
-      - 'traefik.http.routers.my-app.rule=Host(`crook.fr`, `www.crook.fr`)'
-      - "traefik.http.routers.my-app.entrypoints=websecure"
-      - "traefik.http.routers.my-app.tls.certresolver=myresolver"
-
-    ports:
-      - "85:8080"
+      # The labels are usefull for Traefik only
+      - "traefik.enable=true"
+      # http
+      - "traefik.http.routers.httpcrook.entrypoints=web"
+      - "traefik.http.routers.httpcrook.rule=Host(www.crook.fr) || Host(crook.fr)"
+      - "traefik.http.routers.httpcrook.service=crook-service"
+      - "traefik.http.services.httpcrook-service.loadbalancer.server.port=80"
+      # Middlewares
+      # Redirect these routes to https
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.httpcrook.middlewares=redirect-to-https"
+      # https
+      - "traefik.http.routers.httpscrook.entrypoints=websecure"
+      - "traefik.http.routers.httpscrook"
 
   node:
     image: node:12-alpine
