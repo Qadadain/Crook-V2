@@ -9,14 +9,14 @@ services:
       - "--entrypoints.websecure.address=:443"
       - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
       - "--certificatesresolvers.myresolver.acme.email=quentin.adadain@gmail.com"
-      - "--certificatesresolvers.myresolver.acme.storage=/etc/traefik/acme.json"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
     restart: always
     ports:
       - '80:85'
       - '443:443'
     volumes:
-      - ./traefik:/etc/traefik
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - "./letsencrypt:/letsencrypt"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
   web:
     build:
