@@ -34,8 +34,6 @@ services:
     build:
       context: .
       dockerfile: ./docker/php/Dockerfile
-    volumes:
-      - ./traefik:/var/www/html/traefik
     labels:
       # The labels are usefull for Traefik only
       - "traefik.enable=true"
