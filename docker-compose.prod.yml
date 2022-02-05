@@ -39,7 +39,7 @@ services:
       - "traefik.enable=true"
       # http
       - "traefik.http.routers.httpcrook.entrypoints=web"
-      - "traefik.http.routers.httpcrook.rule=Host(`www.crook.fr`) || Host(crook.fr`)"
+      - "traefik.http.routers.httpcrook.rule=Host(`www.crook.fr`) || Host(`crook.fr`)"
       - "traefik.http.routers.httpcrook.service=httpcrook-service"
       - "traefik.http.services.httpcrook-service.loadbalancer.server.port=8080"
       # Middlewares
